@@ -3,6 +3,7 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import HiddenSvg from '../../components/hidden-svg/hidden-svg';
 import { AppRoute } from '../../const';
+import { Helmet } from 'react-helmet-async';
 
 function Page404(): JSX.Element {
 //   const PageTitleStyle = {
@@ -23,6 +24,9 @@ function Page404(): JSX.Element {
 //   } as const;
   return (
     <>
+      <Helmet>
+        <title>Страница не найдена - Escape Room</title>
+      </Helmet>
       <HiddenSvg />
       <div className="wrapper">
         <Header />

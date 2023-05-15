@@ -1,3 +1,4 @@
+import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import HiddenSvg from '../../components/hidden-svg/hidden-svg';
@@ -5,6 +6,9 @@ import HiddenSvg from '../../components/hidden-svg/hidden-svg';
 function QuestPage(): JSX.Element {
   return (
     <>
+      <Helmet>
+        <title>Квест - Escape Room</title>
+      </Helmet>
       <HiddenSvg />
       <div className="wrapper">
         <Header />
