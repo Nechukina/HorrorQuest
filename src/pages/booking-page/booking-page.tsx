@@ -1,7 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import HiddenSvg from '../../components/hidden-svg/hidden-svg';
 
 function BookingPage (): JSX.Element {
 
@@ -10,7 +9,6 @@ function BookingPage (): JSX.Element {
       <Helmet>
         <title>Бронирование квеста - Escape Room</title>
       </Helmet>
-      <HiddenSvg />
       <div className="wrapper">
         <Header />
         <main className="page-content decorated-page">

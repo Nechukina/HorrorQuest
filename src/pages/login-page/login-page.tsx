@@ -1,12 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import HiddenSvg from '../../components/hidden-svg/hidden-svg';
 
 function LoginPage(): JSX.Element {
   return (
     <>
-      <HiddenSvg />
       <Helmet>
         <title>Авторизация - Escape Room</title>
       </Helmet>
