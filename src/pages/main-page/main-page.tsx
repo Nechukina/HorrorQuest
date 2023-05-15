@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 
 function MainPage (): JSX.Element {
 
@@ -109,7 +111,7 @@ function MainPage (): JSX.Element {
                   </picture>
                 </div>
                 <div className="quest-card__content">
-                  <div className="quest-card__info-wrapper"><a className="quest-card__link" href="quest.html">Склеп</a>
+                  <div className="quest-card__info-wrapper"><Link className="quest-card__link" to={AppRoute.QuestInfo}>Склеп</Link>
                   </div>
                   <ul className="tags quest-card__tags">
                     <li className="tags__item">

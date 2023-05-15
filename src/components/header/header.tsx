@@ -15,13 +15,13 @@ function Header(): JSX.Element {
         <nav className="main-nav header__main-nav">
           <ul className="main-nav__list">
             <li className="main-nav__item">
-              <a className="link active" href="index.html">Квесты</a>
+              <Link className="link" to={AppRoute.Main}>Квесты</Link>
             </li>
             <li className="main-nav__item">
               <Link className="link" to={AppRoute.Contacts}>Контакты</Link>
             </li>
             <li className="main-nav__item">
-              <a className="link" href="my-quests.html">Мои бронирования</a>
+              <Link className="link" to={AppRoute.Reservation}>Мои бронирования</Link>
             </li>
           </ul>
         </nav>

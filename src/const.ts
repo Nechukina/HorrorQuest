@@ -1,12 +1,12 @@
 export enum AppRoute {
   Main = '/',
-  Login = '/login',
-  Logout = '/logout',
-  Quest = '/quest',
-  QuestInfo = '/quest/:id',
-  Booking = '/quest/:id/booking',
-  Reservation = '/reservation',
-  Contacts = '/contacts'
+  Login = '/v1/escape-room/login',
+  Logout = '/v1/escape-room/logout',
+  Quest = '/v1/escape-room/quest',
+  QuestInfo = '/v1/escape-room/quest/:id',
+  Booking = '/v1/escape-room/quest/:id/booking',
+  Reservation = '/v1/escape-room/reservation',
+  Contacts = '/v1/escape-room/contacts'
   }
 
 export enum AuthorizationStatus {

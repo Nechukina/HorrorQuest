@@ -13,7 +13,7 @@ function MyQuestsPage(): JSX.Element {
         <main className="decorated-page login">
           <div className="decorated-page__decor" aria-hidden="true">
             <picture>
-              <source type="image/webp" srcSet="img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x"/><img src="img/content/maniac/maniac-bg-size-m.jpg" srcSet="img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt=""/>
+              <source type="image/webp" srcSet="/img/content/maniac/maniac-bg-size-m.webp, img/content/maniac/maniac-bg-size-m@2x.webp 2x"/><img src="/img/content/maniac/maniac-bg-size-m.jpg" srcSet="/img/content/maniac/maniac-bg-size-m@2x.jpg 2x" width="1366" height="1959" alt=""/>
             </picture>
           </div>
           <div className="container">
@@ -24,7 +24,7 @@ function MyQuestsPage(): JSX.Element {
               <div className="quest-card">
                 <div className="quest-card__img">
                   <picture>
-                    <source type="image/webp" srcSet="img/content/maniac/maniac-size-s.webp, img/content/maniac/maniac-size-s@2x.webp 2x"/><img src="img/content/maniac/maniac-size-s.jpg" srcSet="img/content/maniac/maniac-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в маске в тёмном переходе."/>
+                    <source type="image/webp" srcSet="/img/content/maniac/maniac-size-s.webp, img/content/maniac/maniac-size-s@2x.webp 2x"/><img src="/img/content/maniac/maniac-size-s.jpg" srcSet="/img/content/maniac/maniac-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в маске в тёмном переходе."/>
                   </picture>
                 </div>
                 <div className="quest-card__content">
@@ -48,7 +48,7 @@ function MyQuestsPage(): JSX.Element {
               <div className="quest-card">
                 <div className="quest-card__img">
                   <picture>
-                    <source type="image/webp" srcSet="img/content/palace/palace-size-s.webp, img/content/palace/palace-size-s@2x.webp 2x"/><img src="img/content/palace/palace-size-s.jpg" srcSet="img/content/palace/palace-size-s@2x.jpg 2x" width="344" height="232" alt="Замок на возвышенности."/>
+                    <source type="image/webp" srcSet="/img/content/palace/palace-size-s.webp, img/content/palace/palace-size-s@2x.webp 2x"/><img src="/img/content/palace/palace-size-s.jpg" srcSet="/img/content/palace/palace-size-s@2x.jpg 2x" width="344" height="232" alt="Замок на возвышенности."/>
                   </picture>
                 </div>
                 <div className="quest-card__content">
@@ -72,7 +72,7 @@ function MyQuestsPage(): JSX.Element {
               <div className="quest-card">
                 <div className="quest-card__img">
                   <picture>
-                    <source type="image/webp" srcSet="img/content/maniac/maniac-size-s.webp, img/content/maniac/maniac-size-s@2x.webp 2x"/><img src="img/content/maniac/maniac-size-s.jpg" srcSet="img/content/maniac/maniac-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в маске в тёмном переходе."/>
+                    <source type="image/webp" srcSet="/img/content/maniac/maniac-size-s.webp, img/content/maniac/maniac-size-s@2x.webp 2x"/><img src="/img/content/maniac/maniac-size-s.jpg" srcSet="/img/content/maniac/maniac-size-s@2x.jpg 2x" width="344" height="232" alt="Мужчина в маске в тёмном переходе."/>
                   </picture>
                 </div>
                 <div className="quest-card__content">
