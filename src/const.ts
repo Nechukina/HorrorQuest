@@ -14,3 +14,16 @@ export enum AuthorizationStatus {
     NoAuth = 'NO_AUTH',
     Unknown = 'UNKNOWN',
   }
+
+export enum StatusCodes {
+  BAD_REQUEST = 400,
+  NOT_FOUND = 404,
+  UNAUTHORIZED = 401,
+}
+
+export enum NameSpace {
+  Quests = 'QUESTS',
+  Booking = 'BOOKING',
+  Reservation = 'RESERVATION',
+  User = 'USER',
+}
