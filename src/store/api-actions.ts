@@ -5,6 +5,7 @@ import axios, { AxiosInstance } from 'axios';
 import { AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
+import { redirectToRoute } from './actions';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, {
@@ -25,15 +26,14 @@ export const loginAction = createAsyncThunk<UserData | void, AuthData, {
   extra: AxiosInstance;
 }>(
   'user/login',
-  async ({email, password}, { extra: api}) => {
+  async ({email, password}, { dispatch, extra: api}) => {
     try {
       const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
       saveToken(data.token);
+      dispatch(redirectToRoute(AppRoute.Main));
       return data;
     } catch (error) {
       if (axios.isAxiosError(error)) {
-        //eslint-disable-next-line
-        debugger;
         toast.error(error.message);
       }
     }

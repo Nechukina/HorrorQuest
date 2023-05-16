@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
-import { checkAuthAction } from '../../store/api-actions';
+import { AppRoute, AuthorizationStatus } from '../../const';
+import { checkAuthAction, logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 function Header(): JSX.Element {
   const dispatch = useAppDispatch();
@@ -13,6 +13,9 @@ function Header(): JSX.Element {
     dispatch(checkAuthAction());
   }, [dispatch]);
 
+  const onClick = () => {
+    dispatch(logoutAction());
+  };
   return (
     <header className="header">
       <div className="container container--size-l">
@@ -39,7 +42,7 @@ function Header(): JSX.Element {
           </ul>
         </nav>
         <div className="header__side-nav">
-          {authStatus === AuthorizationStatus.Auth ? <Link className="btn btn--accent header__side-item" to={AppRoute.Login}>Выйти</Link> : <Link className="btn header__side-item header__login-btn" to={AppRoute.Login}>Вход</Link>}
+          {authStatus === AuthorizationStatus.Auth ? <Link onClick={onClick} className="btn btn--accent header__side-item" to={AppRoute.Login}>Выйти</Link> : <Link className="btn header__side-item header__login-btn" to={AppRoute.Login}>Вход</Link>}
           <a className="link header__side-item header__phone-link" href="tel:88003335599">8 (000) 111-11-11</a>
         </div>
       </div>
