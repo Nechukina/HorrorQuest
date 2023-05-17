@@ -1,6 +1,6 @@
-// import { useEffect } from 'react';
-// import { useAppDispatch } from '../../hooks';
-// import { fetchQuestAction } from '../../store/api-actions';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { fetchBookingQuestsAction } from '../../store/api-actions';
 import { QuestData } from '../../types/quests-data';
 import BookingForm from '../booking-form/booking-form';
 
@@ -10,11 +10,11 @@ export type BookingQuestProps = {
 }
 
 function BookingQuest({id, quest}: BookingQuestProps): JSX.Element {
-  //const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
-  // useEffect(() => {
-  //   dispatch(fetchQuestAction(id));
-  // }, [dispatch, id]);
+  useEffect(() => {
+    dispatch(fetchBookingQuestsAction(id));
+  }, [dispatch, id]);
 
   return (
     <>

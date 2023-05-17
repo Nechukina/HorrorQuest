@@ -7,6 +7,8 @@ import { dropToken, saveToken } from '../services/token';
 import { toast } from 'react-toastify';
 import { redirectToRoute } from './actions';
 import { Quest, QuestData, Quests } from '../types/quests-data';
+import { BookingQuests } from '../types/booking-data';
+import { generatePath } from 'react-router-dom';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
@@ -69,6 +71,22 @@ export const fetchQuestsAction = createAsyncThunk<Quests, undefined, ThunkOption
   async (_arg, { extra: api }) => {
     try {
       const { data } = await api.get<Quest[]>(AppRoute.Quest);
+
+      return data;
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        toast.error(err.message);
+      }
+      throw err;
+    }
+  }
+);
+
+export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, ThunkOptions>(
+  'data/fetchBookingQuests',
+  async (questId, { extra: api }) => {
+    try {
+      const { data } = await api.get<BookingQuests>(generatePath(AppRoute.Booking, { id: questId.toString() }));
 
       return data;
     } catch (err) {
