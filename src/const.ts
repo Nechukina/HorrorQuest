@@ -79,4 +79,5 @@ export type LevelsFilter = keyof typeof LevelFilter;
 export enum MainLocation {
   latitude = 59.968456,
   longitude = 30.31759,
+  zoom = 14,
 }

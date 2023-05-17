@@ -1,6 +1,8 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
+import Map from '../../components/map/map';
+import { MainLocation } from '../../const';
 
 function ContactsPage(): JSX.Element {
   return (
@@ -49,7 +51,9 @@ function ContactsPage(): JSX.Element {
               </dl>
               <div className="contacts__map">
                 <div className="map">
-                  <div className="map__container"></div>
+
+                  <Map className="map__container" location={MainLocation}/>
+
                 </div>
               </div>
             </div>

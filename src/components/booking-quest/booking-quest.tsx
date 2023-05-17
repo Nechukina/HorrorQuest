@@ -3,6 +3,9 @@ import { useAppDispatch } from '../../hooks';
 import { fetchBookingQuestsAction } from '../../store/api-actions';
 import { QuestData } from '../../types/quests-data';
 import BookingForm from '../booking-form/booking-form';
+import { MainLocation } from '../../const';
+import Map from '../map/map';
+
 
 export type BookingQuestProps = {
   id: string;
@@ -32,7 +35,9 @@ function BookingQuest({id, quest}: BookingQuestProps): JSX.Element {
         <div className="page-content__item">
           <div className="booking-map">
             <div className="map">
-              <div className="map__container"></div>
+
+              <Map location={MainLocation} className="map__container"/>
+
             </div>
             <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
           </div>
