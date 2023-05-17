@@ -22,7 +22,6 @@ function LoginForm(): JSX.Element {
   };
 
   return (
-    // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form onSubmit={handleSubmit(onSubmit)}
       className="login-form" action="https://echo.htmlacademy.ru/" method="post"
     >
