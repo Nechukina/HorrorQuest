@@ -23,6 +23,7 @@ export enum StatusCodes {
 
 export enum NameSpace {
   Quests = 'QUESTS',
+  Quest = 'QUEST',
   Booking = 'BOOKING',
   Reservation = 'RESERVATION',
   User = 'USER',
@@ -45,4 +46,32 @@ export enum QuestType {
   Mystic = 'mystic',
   Detective = 'detective',
   SciFi = 'sci-fi',
+  AllTypes = 'all-types'
 }
+
+export enum Status {
+  Idle = 'idle',
+  Loading = 'loading',
+  Success = 'success',
+  Error = 'error'
+}
+
+export const TypeFilter: Record<QuestType, string> = {
+  [QuestType.Adventures]: 'Прриключения',
+  [QuestType.Detective]: 'Детектив',
+  [QuestType.Horror]: 'Ужасы',
+  [QuestType.Mystic]: 'Мистика',
+  [QuestType.SciFi]: 'Sci-Fi',
+  [QuestType.AllTypes]: 'Все квесты',
+} as const;
+
+export type TypesFilter = keyof typeof TypeFilter;
+
+
+export const LevelFilter: Record<QuestLevel, string> = {
+  [QuestLevel.Easy]: 'Легкий',
+  [QuestLevel.Medium]: 'Средний',
+  [QuestLevel.Hard]: 'Сложный',
+} as const;
+
+export type LevelsFilter = keyof typeof LevelFilter;

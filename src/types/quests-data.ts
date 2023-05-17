@@ -7,19 +7,19 @@ export type Quest = {
   previewImgWebp: string;
   level: QuestLevel;
   type: QuestType;
-  peopleMinMax: [number];
+  peopleMinMax: [number, number];
 }
 
 export type Quests = Quest[];
 
-export type QuestInfo = {
+export type QuestData = {
   id: string;
   title: string;
   previewImg: string;
   previewImgWebp: string;
   level: QuestLevel;
-  type: QuestInfo;
-  peopleMinMax: [number];
+  type: QuestType;
+  peopleMinMax: [number, number];
   description: string;
   coverImg: string;
   coverImgWebp: string;

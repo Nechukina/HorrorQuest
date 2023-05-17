@@ -17,10 +17,8 @@ function LoginForm(): JSX.Element {
   });
 
   const onSubmit = (data: AuthData) => {
-    // eslint-disable-next-line
-    console.log(data);
-    reset();
     dispatch(loginAction(data));
+    reset();
   };
 
   return (
