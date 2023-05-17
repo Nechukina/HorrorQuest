@@ -57,7 +57,7 @@ export enum Status {
 }
 
 export const TypeFilter: Record<QuestType, string> = {
-  [QuestType.Adventures]: 'Прриключения',
+  [QuestType.Adventures]: 'Приключения',
   [QuestType.Detective]: 'Детектив',
   [QuestType.Horror]: 'Ужасы',
   [QuestType.Mystic]: 'Мистика',

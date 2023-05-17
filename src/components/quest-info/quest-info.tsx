@@ -1,6 +1,8 @@
+import { Link, generatePath } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import Page404 from '../../pages/page-404/page-404';
 import { getQuest } from '../../store/quest-data/quest-data.selector';
+import { AppRoute } from '../../const';
 
 export type QuestInfoProps = {
   id: string;
@@ -46,7 +48,7 @@ function QuestInfo({id}: QuestInfoProps): JSX.Element {
             </li>
           </ul>
           <p className="quest-page__description">{quest.description}</p>
-          <a className="btn btn--accent btn--cta quest-page__btn" href="booking.html">Забронировать</a>
+          <Link className="btn btn--accent btn--cta quest-page__btn" to={generatePath(AppRoute.Booking, { id: id.toString() })}>Забронировать</Link>
         </div>
       </div>
     </main>
