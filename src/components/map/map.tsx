@@ -1,8 +1,9 @@
 import { Icon, Marker, layerGroup } from 'leaflet';
 import { useEffect, useRef } from 'react';
-import useMap from '../../hooks/use-map/use-map';
 import 'leaflet/dist/leaflet.css';
 import { Location } from '../../types/map';
+import useMap from '../../hooks/use-map/use-map';
+
 
 type MapProps = {
   location: Location;

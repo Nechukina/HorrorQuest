@@ -17,8 +17,6 @@ function MainPage (): JSX.Element {
     dispatch(fetchQuestsAction());
   }, [dispatch]);
 
-  // eslint-disable-next-line no-console
-  console.log(quests);
 
   return (
     <>

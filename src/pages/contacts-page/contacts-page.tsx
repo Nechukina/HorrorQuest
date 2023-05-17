@@ -51,9 +51,7 @@ function ContactsPage(): JSX.Element {
               </dl>
               <div className="contacts__map">
                 <div className="map">
-
                   <Map className="map__container" location={MainLocation}/>
-
                 </div>
               </div>
             </div>

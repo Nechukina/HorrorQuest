@@ -35,9 +35,7 @@ function BookingQuest({id, quest}: BookingQuestProps): JSX.Element {
         <div className="page-content__item">
           <div className="booking-map">
             <div className="map">
-
               <Map location={MainLocation} className="map__container"/>
-
             </div>
             <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
           </div>

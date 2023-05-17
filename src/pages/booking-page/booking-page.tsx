@@ -10,8 +10,6 @@ function BookingPage (): JSX.Element {
   const quest = useAppSelector(getQuest);
   const questId = quest?.id;
   const id = String(questId);
-  // eslint-disable-next-line no-console
-  console.log('booked', quest);
 
   if (!quest) {
     return <Page404 />;

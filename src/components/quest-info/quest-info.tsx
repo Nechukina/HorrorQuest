@@ -12,10 +12,6 @@ function QuestInfo({id}: QuestInfoProps): JSX.Element {
 
   const quest = useAppSelector(getQuest);
 
-  // eslint-disable-next-line no-console
-  console.log(quest);
-
-
   if (!quest) {
     return <Page404/>;
   }
