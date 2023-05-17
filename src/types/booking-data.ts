@@ -1,19 +1,19 @@
 export type BookingQuest = {
   id: string;
-  location: {
-    address: string;
-    coords: [number, number];
-  };
-  slots: {
-    today: [{
-      time: string;
-      isAvailable: boolean;
-    }];
-    tomorrow: [{
-      time: string;
-      isAvailable: boolean;
-    }];
-  };
+  location: QuestLocation;
+  slots: Slots;
 };
 
 export type BookingQuests = BookingQuest[];
+
+export type Slot = {
+  time: string;
+  isAvailable: boolean;
+};
+
+export type Slots = Slot[];
+
+export type QuestLocation = {
+    address: string;
+    coords: [number, number];
+};
