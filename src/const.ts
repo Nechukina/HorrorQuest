@@ -82,3 +82,7 @@ export enum MainLocation {
   longitude = 30.31759,
   zoom = 14,
 }
+
+export enum MaxElementCountOnScreen {
+  ToastError = 1,
+}
