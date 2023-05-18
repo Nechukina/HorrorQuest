@@ -1,22 +1,26 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-// import { Link } from 'react-router-dom';
-// import { AppRoute } from '../../const';
-import { getQuests } from '../../store/quests-data/quests-data.selector';
+import { getQuests, getStatus } from '../../store/quests-data/quests-data.selector';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchQuestsAction } from '../../store/api-actions';
 import QuestCard from '../../components/quest-card/quest-card';
+import { Status } from '../../const';
+import Loader from '../../components/loader/loader';
 
 function MainPage (): JSX.Element {
   const quests = useAppSelector(getQuests);
   const dispatch = useAppDispatch();
+  const questsLoadingStatus = useAppSelector(getStatus);
 
   useEffect(() => {
     dispatch(fetchQuestsAction());
   }, [dispatch]);
 
+  if (questsLoadingStatus === Status.Loading) {
+    return <Loader />;
+  }
 
   return (
     <>
