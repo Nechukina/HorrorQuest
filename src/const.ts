@@ -27,6 +27,7 @@ export enum NameSpace {
   Booking = 'BOOKING',
   Reservation = 'RESERVATION',
   User = 'USER',
+  Notification = 'NOTIFICATION'
 }
 
 export const ValidationPattern = {

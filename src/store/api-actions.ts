@@ -1,21 +1,25 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthData, UserData } from '../types/user-process';
 import { ThunkOptions } from '../types/state';
-import axios from 'axios';
 import { AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { toast } from 'react-toastify';
 import { redirectToRoute } from './actions';
 import { Quest, QuestData, Quests } from '../types/quests-data';
 import { BookingQuests } from '../types/booking-data';
 import { generatePath } from 'react-router-dom';
+import { pushNotification } from './notifications/notifications.slice';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
   'user/checkAuth',
   async (_arg, {extra: api}) => {
-    const {data} = await api.get<UserData>(AppRoute.Login);
-    return data;
+    try {
+      const {data} = await api.get<UserData>(AppRoute.Login);
+      return data;
+    } catch (error) {
+      throw new Error();
+    }
   }
 );
 
@@ -25,26 +29,25 @@ export const loginAction = createAsyncThunk<UserData | void, AuthData, ThunkOpti
     try {
       const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
       saveToken(data.token);
+      dispatch(pushNotification({ type: 'success', message: 'Login success' }));
       dispatch(redirectToRoute(AppRoute.Main));
       return data;
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.message);
-      }
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Login failed' }));
+      throw err;
     }
   },
 );
 
 export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
   'user/logout',
-  async (_arg, { extra: api}) => {
+  async (_arg, { dispatch ,extra: api}) => {
     try {
       await api.delete(`${AppRoute.Logout}`);
       dropToken();
-    } catch (error) {
-      if (axios.isAxiosError(error)) {
-        toast.error(error.message);
-      }
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Logout failed' }));
+      throw err;
     }
   },
 );
@@ -57,10 +60,7 @@ export const fetchQuestAction = createAsyncThunk<QuestData, string, ThunkOptions
 
       return data;
     } catch (err) {
-      // dispatch(pushNotification({ type: 'error', message: 'Failed to load offer data' }));
-      if (axios.isAxiosError(err)) {
-        toast.error(err.message);
-      }
+      dispatch(pushNotification({ type: 'error', message: 'Failed to load quest data' }));
       throw err;
     }
   }
@@ -68,15 +68,14 @@ export const fetchQuestAction = createAsyncThunk<QuestData, string, ThunkOptions
 
 export const fetchQuestsAction = createAsyncThunk<Quests, undefined, ThunkOptions>(
   'data/fetchQuests',
-  async (_arg, { extra: api }) => {
+  async (_arg, { dispatch ,extra: api }) => {
     try {
       const { data } = await api.get<Quest[]>(AppRoute.Quest);
 
       return data;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        toast.error(err.message);
-      }
+      dispatch(pushNotification({ type: 'error', message: 'Failed to load quests data' }));
+
       throw err;
     }
   }
@@ -84,15 +83,13 @@ export const fetchQuestsAction = createAsyncThunk<Quests, undefined, ThunkOption
 
 export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, ThunkOptions>(
   'data/fetchBookingQuests',
-  async (questId, { extra: api }) => {
+  async (questId, { dispatch, extra: api }) => {
     try {
       const { data } = await api.get<BookingQuests>(generatePath(AppRoute.Booking, { id: questId.toString() }));
 
       return data;
     } catch (err) {
-      if (axios.isAxiosError(err)) {
-        toast.error(err.message);
-      }
+      dispatch(pushNotification({ type: 'error', message: 'Failed to load booking quests data' }));
       throw err;
     }
   }
