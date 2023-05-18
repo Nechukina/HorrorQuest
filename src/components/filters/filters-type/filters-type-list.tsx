@@ -1,3 +1,4 @@
+import { TypeFilter } from '../../../const';
 import FiltersTypeItem from './filters-type-item';
 
 function FiltersTypeList(): JSX.Element {
@@ -5,7 +6,9 @@ function FiltersTypeList(): JSX.Element {
     <fieldset className="filter__section">
       <legend className="visually-hidden">Тематика</legend>
       <ul className="filter__list">
-        <FiltersTypeItem />
+        {Array.from(Object.values(TypeFilter)).map((type) => (
+          <FiltersTypeItem type={type} key={type} />
+        ) )}
       </ul>
     </fieldset>
   );

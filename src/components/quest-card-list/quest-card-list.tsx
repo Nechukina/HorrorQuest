@@ -1,24 +1,23 @@
-import { useEffect } from 'react';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getQuests, getStatus } from '../../store/quests-data/quests-data.selector';
+import { useAppSelector } from '../../hooks';
+import { getStatus } from '../../store/quests-data/quests-data.selectors';
 import QuestCard from '../quest-card/quest-card';
-import { fetchQuestsAction } from '../../store/api-actions';
 import { Status } from '../../const';
 import Loader from '../loader/loader';
+import { Quests } from '../../types/quests-data';
 
+type QuestCardListProps ={
+  quests: Quests;
+}
 
-function QuestCardList(): JSX.Element {
-
-  const quests = useAppSelector(getQuests);
-  const dispatch = useAppDispatch();
+function QuestCardList({quests}: QuestCardListProps): JSX.Element {
   const questsLoadingStatus = useAppSelector(getStatus);
 
-  useEffect(() => {
-    dispatch(fetchQuestsAction());
-  }, [dispatch]);
 
   if (questsLoadingStatus === Status.Loading) {
     return <Loader />;
+  }
+  if(!quests.length) {
+    return <p>УВЫ! По выбранным фильтрам квестов ещё нет. Попробуйте другие варианты:)</p>;
   }
 
   return (

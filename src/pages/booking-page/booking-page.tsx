@@ -3,7 +3,7 @@ import BookingQuest from '../../components/booking-quest/booking-quest';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { useAppSelector } from '../../hooks';
-import { getQuest } from '../../store/quest-data/quest-data.selector';
+import { getQuest } from '../../store/quest-data/quest-data.selectors';
 import Page404 from '../page-404/page-404';
 
 function BookingPage (): JSX.Element {

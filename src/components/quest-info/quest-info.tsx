@@ -1,8 +1,8 @@
 import { Link, generatePath } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import Page404 from '../../pages/page-404/page-404';
-import { getQuest } from '../../store/quest-data/quest-data.selector';
-import { AppRoute } from '../../const';
+import { getQuest } from '../../store/quest-data/quest-data.selectors';
+import { AppRoute, LevelFilter, TypeFilter } from '../../const';
 
 export type QuestInfoProps = {
   id: string;
@@ -29,7 +29,7 @@ function QuestInfo({id}: QuestInfoProps): JSX.Element {
       <div className="container container--size-l">
         <div className="quest-page__content">
           <h1 className="title title--size-l title--uppercase quest-page__title">{quest.title}</h1>
-          <p className="subtitle quest-page__subtitle"><span className="visually-hidden">Жанр:</span>{quest.type}
+          <p className="subtitle quest-page__subtitle"><span className="visually-hidden">Жанр:</span>{TypeFilter[quest.type]}
           </p>
           <ul className="tags tags--size-l quest-page__tags">
             <li className="tags__item">
@@ -40,7 +40,7 @@ function QuestInfo({id}: QuestInfoProps): JSX.Element {
             <li className="tags__item">
               <svg width="14" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-level"></use>
-              </svg>{quest.level}
+              </svg>{LevelFilter[quest.level]}
             </li>
           </ul>
           <p className="quest-page__description">{quest.description}</p>

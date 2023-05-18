@@ -1,5 +1,5 @@
 import { Link, generatePath } from 'react-router-dom';
-import { AppRoute, QuestLevel} from '../../const';
+import { AppRoute, LevelFilter, QuestLevel} from '../../const';
 
 export type QuestCardProps = {
   id: string;
@@ -30,7 +30,7 @@ function QuestCard({id, title, previewImg, previewImgWebp, level, peopleMinMax}:
           <li className="tags__item">
             <svg width="14" height="14" aria-hidden="true">
               <use xlinkHref="#icon-level"></use>
-            </svg>{level}
+            </svg>{LevelFilter[level]}
           </li>
         </ul>
       </div>

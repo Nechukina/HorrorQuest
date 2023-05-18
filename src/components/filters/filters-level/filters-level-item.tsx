@@ -1,27 +1,26 @@
-function FiltersLevelItem(): JSX.Element {
+import { ChangeEvent } from 'react';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
+import { getLevel } from '../../../store/quests-filter/quests-filter.selectors';
+import { chooseLevel } from '../../../store/quests-filter/quests-filter.slice';
+
+type FiltersLevelItemProps = {
+  level: string;
+}
+
+function FiltersLevelItem({level}: FiltersLevelItemProps): JSX.Element {
+
+  const activeLevel = useAppSelector(getLevel);
+  const dispatch = useAppDispatch();
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>): void => {
+    dispatch(chooseLevel(level));
+  };
+
   return (
-    <>
-      <li className="filter__item">
-        <input type="radio" name="level" id="any" />
-        <label className="filter__label" htmlFor="any"><span className="filter__label-text">Любой</span>
-        </label>
-      </li>
-      <li className="filter__item">
-        <input type="radio" name="level" id="easy" />
-        <label className="filter__label" htmlFor="easy"><span className="filter__label-text">Лёгкий</span>
-        </label>
-      </li>
-      <li className="filter__item">
-        <input type="radio" name="level" id="middle" />
-        <label className="filter__label" htmlFor="middle"><span className="filter__label-text">Средний</span>
-        </label>
-      </li>
-      <li className="filter__item">
-        <input type="radio" name="level" id="hard" />
-        <label className="filter__label" htmlFor="hard"><span className="filter__label-text">Сложный</span>
-        </label>
-      </li>
-    </>
+    <li className="filter__item">
+      <input type="radio" name="level" id={level} checked={level === activeLevel} onChange={handleChange}/>
+      <label className="filter__label" htmlFor={level}><span className="filter__label-text">{level}</span>
+      </label>
+    </li>
   );
 }
 

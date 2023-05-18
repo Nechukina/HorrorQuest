@@ -27,7 +27,8 @@ export enum NameSpace {
   Booking = 'BOOKING',
   Reservation = 'RESERVATION',
   User = 'USER',
-  Notification = 'NOTIFICATION'
+  Notification = 'NOTIFICATION',
+  Filter = 'FILTER'
 }
 
 export const ValidationPattern = {
@@ -39,6 +40,7 @@ export enum QuestLevel {
   Easy = 'easy',
   Medium = 'medium',
   Hard = 'hard',
+  Any = 'any'
 }
 
 export enum QuestType {
@@ -58,24 +60,22 @@ export enum Status {
 }
 
 export const TypeFilter: Record<QuestType, string> = {
+  [QuestType.AllTypes]: 'Все квесты',
   [QuestType.Adventures]: 'Приключения',
   [QuestType.Detective]: 'Детектив',
   [QuestType.Horror]: 'Ужасы',
   [QuestType.Mystic]: 'Мистика',
   [QuestType.SciFi]: 'Sci-Fi',
-  [QuestType.AllTypes]: 'Все квесты',
 } as const;
-
-export type TypesFilter = keyof typeof TypeFilter;
 
 
 export const LevelFilter: Record<QuestLevel, string> = {
+  [QuestLevel.Any]: 'Любой',
   [QuestLevel.Easy]: 'Легкий',
   [QuestLevel.Medium]: 'Средний',
   [QuestLevel.Hard]: 'Сложный',
 } as const;
 
-export type LevelsFilter = keyof typeof LevelFilter;
 
 export enum MainLocation {
   latitude = 59.968456,
