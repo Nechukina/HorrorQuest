@@ -5,22 +5,7 @@ import { AppRoute } from '../../const';
 import { Helmet } from 'react-helmet-async';
 
 function Page404(): JSX.Element {
-//   const PageTitleStyle = {
-//     textAlign: 'center',
-//     fontSize: '3em',
-//     marginBottom: '1.25em',
-//     color: 'red'
-//   } as const;
-//   const PageTextStyle = {
-//     textAlign: 'center',
-//     color: '#c9c0bb',
-//     fontSize: '1.25em',
-//   } as const;
-//   const MainLinkStyle = {
-//     width: 'fit-content',
-//     margin: '0 auto',
-//     padding: '0 2%'
-//   } as const;
+
   return (
     <>
       <Helmet>
