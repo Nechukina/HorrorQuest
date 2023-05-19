@@ -2,7 +2,8 @@ import { Link, generatePath } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import Page404 from '../../pages/page-404/page-404';
 import { getQuest } from '../../store/quest-data/quest-data.selectors';
-import { AppRoute, LevelFilter, TypeFilter } from '../../const';
+import { AppRoute, AuthorizationStatus, LevelFilter, TypeFilter } from '../../const';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 
 export type QuestInfoProps = {
   id: string;
@@ -11,6 +12,7 @@ export type QuestInfoProps = {
 function QuestInfo({id}: QuestInfoProps): JSX.Element {
 
   const quest = useAppSelector(getQuest);
+  const authStatus = useAppSelector(getAuthorizationStatus);
 
   if (!quest) {
     return <Page404/>;
@@ -44,7 +46,11 @@ function QuestInfo({id}: QuestInfoProps): JSX.Element {
             </li>
           </ul>
           <p className="quest-page__description">{quest.description}</p>
-          <Link className="btn btn--accent btn--cta quest-page__btn" to={generatePath(AppRoute.Booking, { id: id.toString() })}>Забронировать</Link>
+          {authStatus === AuthorizationStatus.Auth
+            ?
+            <Link className="btn btn--accent btn--cta quest-page__btn" to={generatePath(AppRoute.Booking, { id: id.toString() })}>Забронировать</Link>
+            :
+            <Link className="btn btn--accent btn--cta quest-page__btn" to={AppRoute.Login}>Забронировать</Link>}
         </div>
       </div>
     </main>

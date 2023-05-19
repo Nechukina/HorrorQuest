@@ -3,10 +3,12 @@ import { ValidationPattern } from '../../const';
 import { useAppDispatch } from '../../hooks';
 import { loginAction } from '../../store/api-actions';
 import { AuthData } from '../../types/user-process';
+import { useNavigate } from 'react-router-dom';
 
 
 function LoginForm(): JSX.Element {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -60,7 +62,7 @@ function LoginForm(): JSX.Element {
             {errors?.password && <p>{errors?.password?.message || 'Пароль должен содержать минимум одну букву и цифру'}</p>}
           </div>
         </div>
-        <button className="btn btn--accent btn--general login-form__submit" type="submit" disabled={!isValid}>Войти</button>
+        <button onClick={() => navigate(-1)} className="btn btn--accent btn--general login-form__submit" type="submit" disabled={!isValid}>Войти</button>
       </div>
     </form>
   );

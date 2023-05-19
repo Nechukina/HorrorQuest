@@ -3,7 +3,6 @@ import { AuthData, UserData } from '../types/user-process';
 import { ThunkOptions } from '../types/state';
 import { AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { redirectToRoute } from './actions';
 import { Quest, QuestData, Quests } from '../types/quests-data';
 import { BookingQuests } from '../types/booking-data';
 import { generatePath } from 'react-router-dom';
@@ -31,7 +30,6 @@ export const loginAction = createAsyncThunk<UserData | void, AuthData, ThunkOpti
       const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
       saveToken(data.token);
       dispatch(pushNotification({ type: 'success', message: 'Login success' }));
-      dispatch(redirectToRoute(AppRoute.Main));
       return data;
     } catch (err) {
       dispatch(pushNotification({ type: 'error', message: 'Login failed' }));
