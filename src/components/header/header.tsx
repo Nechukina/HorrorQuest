@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
-import { useEffect } from 'react';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { checkAuthAction, logoutAction } from '../../store/api-actions';
+import { logoutAction } from '../../store/api-actions';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 
@@ -9,9 +8,6 @@ function Header(): JSX.Element {
   const dispatch = useAppDispatch();
   const authStatus = useAppSelector(getAuthorizationStatus);
 
-  useEffect(() => () => {
-    dispatch(checkAuthAction());
-  }, [dispatch]);
 
   const onClick = () => {
     dispatch(logoutAction());

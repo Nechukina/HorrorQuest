@@ -9,9 +9,18 @@ import PrivateRoute from '../private-route/private-route';
 import QuestPage from '../../pages/quest-page/quest-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
 import { HelmetProvider } from 'react-helmet-async';
+import { useEffect } from 'react';
+import { useAppDispatch } from '../../hooks';
+import { checkAuthAction } from '../../store/api-actions';
 
 
 function App(): JSX.Element {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => () => {
+    dispatch(checkAuthAction());
+  }, [dispatch]);
+
   return (
     <HelmetProvider>
       <Routes>

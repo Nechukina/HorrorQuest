@@ -13,12 +13,13 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
   'user/checkAuth',
-  async (_arg, {extra: api}) => {
+  async (_arg, { dispatch, extra: api}) => {
     try {
       const {data} = await api.get<UserData>(AppRoute.Login);
       return data;
-    } catch (error) {
-      throw new Error();
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'You do not have permission to this page. Please, log in' }));
+      throw err;
     }
   }
 );
