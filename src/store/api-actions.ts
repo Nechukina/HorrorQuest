@@ -8,6 +8,8 @@ import { BookingQuests } from '../types/booking-data';
 import { generatePath } from 'react-router-dom';
 import { pushNotification } from './notifications/notifications.slice';
 import 'react-toastify/dist/ReactToastify.css';
+import { BookingData, BookingPostData } from '../types/booking-form-data';
+import { redirectToRoute } from './actions';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
@@ -17,25 +19,26 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOption
       const {data} = await api.get<UserData>(AppRoute.Login);
       return data;
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'You do not have permission to this page. Please, log in' }));
+      dispatch(pushNotification({ type: 'error', message: 'Доступ к странице закрыт. Пожалуйста, авторизуйтесь' }));
       throw err;
     }
   }
 );
 
-export const loginAction = createAsyncThunk<UserData | void, AuthData, ThunkOptions>(
+export const loginAction = createAsyncThunk<UserData, AuthData & {onSuccess: () => void}, ThunkOptions>(
   'user/login',
-  async ({email, password}, { dispatch, extra: api}) => {
-    try {
-      const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
-      saveToken(data.token);
-      dispatch(pushNotification({ type: 'success', message: 'Login success' }));
-      return data;
-    } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Login failed' }));
-      throw err;
-    }
-  },
+async ({email, password, onSuccess}, { dispatch, extra: api}) => {
+  try {
+    const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
+    saveToken(data.token);
+    onSuccess();
+    dispatch(pushNotification({ type: 'success', message: 'Авторизация успешна' }));
+    return data;
+  } catch (err) {
+    dispatch(pushNotification({ type: 'error', message: 'Ошибка авторизации' }));
+    throw err;
+  }
+},
 );
 
 export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
@@ -45,7 +48,7 @@ export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
       await api.delete(`${AppRoute.Logout}`);
       dropToken();
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Logout failed' }));
+      dispatch(pushNotification({ type: 'error', message: 'Ошибка завершения сессии. Попробуйте снова' }));
       throw err;
     }
   },
@@ -59,7 +62,7 @@ export const fetchQuestAction = createAsyncThunk<QuestData, string, ThunkOptions
 
       return data;
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Failed to load quest data' }));
+      dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о квесте' }));
       throw err;
     }
   }
@@ -73,7 +76,7 @@ export const fetchQuestsAction = createAsyncThunk<Quests, undefined, ThunkOption
 
       return data;
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Failed to load quests data' }));
+      dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о квестах' }));
 
       throw err;
     }
@@ -88,7 +91,22 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
 
       return data;
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Failed to load booking quests data' }));
+      dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о квестах' }));
+      throw err;
+    }
+  }
+);
+
+export const postBookingQuestAction = createAsyncThunk<BookingData, BookingPostData, ThunkOptions>(
+  'data/postBookingQuest',
+  async ({ questId, bookingData }, { dispatch, extra: api }) => {
+    try {
+      const { data } = await api.post<BookingData>(generatePath(AppRoute.Booking, { id: questId.toString() }), bookingData);
+      dispatch(pushNotification({ type: 'success', message: 'Квест забронирован!' }));
+      dispatch(redirectToRoute(AppRoute.Reservation));
+      return data;
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Ошибка бронирования квеста' }));
       throw err;
     }
   }

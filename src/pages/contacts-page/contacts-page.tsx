@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import MapReact from '../../components/map/map-react';
+import MapContacts from '../../components/map/map-contacts';
 // import Map from '../../components/map/map';
 // import { MainLocation } from '../../const';
 
@@ -53,7 +53,7 @@ function ContactsPage(): JSX.Element {
               </dl>
               <div className="contacts__map">
                 <div className="map">
-                  <MapReact />
+                  <MapContacts />
                   {/* <Map className="map__container" location={MainLocation}/> */}
                 </div>
               </div>

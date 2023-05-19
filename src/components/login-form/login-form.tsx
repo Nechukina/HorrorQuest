@@ -19,8 +19,7 @@ function LoginForm(): JSX.Element {
   });
 
   const onSubmit = (data: AuthData) => {
-    dispatch(loginAction(data));
-    reset();
+    dispatch(loginAction({...data, onSuccess: reset}));
   };
 
   return (

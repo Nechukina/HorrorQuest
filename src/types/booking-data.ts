@@ -11,7 +11,10 @@ export type Slot = {
   isAvailable: boolean;
 };
 
-export type Slots = Slot[];
+export type Slots = {
+  today: Slot[];
+  tommorrow: Slot[];
+}
 
 export type QuestLocation = {
     address: string;

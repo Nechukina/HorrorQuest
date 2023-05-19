@@ -1,3 +1,4 @@
+
 export enum AppRoute {
   Main = '/',
   Login = '/v1/escape-room/login',
@@ -76,6 +77,15 @@ export const LevelFilter: Record<QuestLevel, string> = {
   [QuestLevel.Hard]: 'Сложный',
 } as const;
 
+export enum DateSlot {
+  Today = 'today',
+  Tomorrow = 'tomorrow'
+}
+
+export const SlotName: Record<string, string> = {
+  [DateSlot.Today]: 'Сегодня',
+  [DateSlot.Tomorrow]: 'Завтра'
+} as const;
 
 export enum ContactsLocation {
   lat = 59.968456,
