@@ -17,7 +17,7 @@ function QuestCardList({quests}: QuestCardListProps): JSX.Element {
     return <Loader />;
   }
   if(!quests.length) {
-    return <p>УВЫ! По выбранным фильтрам квестов ещё нет. Попробуйте другие варианты:)</p>;
+    return <p style={{textAlign: 'center', fontSize: 24}}>УВЫ! По выбранным фильтрам квестов ещё нет. Попробуйте другие варианты:)</p>;
   }
 
   return (

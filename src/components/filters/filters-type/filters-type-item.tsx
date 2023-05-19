@@ -11,9 +11,8 @@ type FiltersTypeItemProps = {
 function FiltersTypeItem({type}: FiltersTypeItemProps): JSX.Element {
   const activeType = useAppSelector(getType);
   const dispatch = useAppDispatch();
-  //TODO: icon
   const iconType = (Object.keys(TypeFilter) as (keyof typeof TypeFilter)[]).find((key) => TypeFilter[key] === type);
-  const icon = `#icon-${iconType}`;
+  const icon = `#icon-${iconType as string}` ;
   const handleChange = (evt: ChangeEvent<HTMLInputElement>): void => {
     dispatch(chooseType(type));
   };
