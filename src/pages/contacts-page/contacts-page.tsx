@@ -1,8 +1,10 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import Map from '../../components/map/map';
-import { MainLocation } from '../../const';
+import MapReact from '../../components/map/map-react';
+// import Map from '../../components/map/map';
+// import { MainLocation } from '../../const';
+
 
 function ContactsPage(): JSX.Element {
   return (
@@ -51,7 +53,8 @@ function ContactsPage(): JSX.Element {
               </dl>
               <div className="contacts__map">
                 <div className="map">
-                  <Map className="map__container" location={MainLocation}/>
+                  <MapReact />
+                  {/* <Map className="map__container" location={MainLocation}/> */}
                 </div>
               </div>
             </div>

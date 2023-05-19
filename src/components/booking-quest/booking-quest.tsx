@@ -1,10 +1,10 @@
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { fetchBookingQuestsAction } from '../../store/api-actions';
+import { useAppSelector } from '../../hooks';
 import { QuestData } from '../../types/quests-data';
 import BookingForm from '../booking-form/booking-form';
-import { MainLocation } from '../../const';
 import Map from '../map/map';
+import { getBookingQuests, getStatus } from '../../store/booking-data/booking-data.selectors';
+import { Status } from '../../const';
+import Loader from '../loader/loader';
 
 
 export type BookingQuestProps = {
@@ -13,11 +13,13 @@ export type BookingQuestProps = {
 }
 
 function BookingQuest({id, quest}: BookingQuestProps): JSX.Element {
-  const dispatch = useAppDispatch();
+  const bookingQuests = useAppSelector(getBookingQuests);
+  const isBookingQuestsLoaded = useAppSelector(getStatus);
 
-  useEffect(() => {
-    dispatch(fetchBookingQuestsAction(id));
-  }, [dispatch, id]);
+
+  if (isBookingQuestsLoaded === Status.Loading) {
+    return <Loader />;
+  }
 
   return (
     <>
@@ -35,7 +37,7 @@ function BookingQuest({id, quest}: BookingQuestProps): JSX.Element {
         <div className="page-content__item">
           <div className="booking-map">
             <div className="map">
-              <Map location={MainLocation} className="map__container"/>
+              <Map location={bookingQuests[0].location.coords} quests={bookingQuests} selectedQuestId={id} className="map__container"/>
             </div>
             <p className="booking-map__address">Вы&nbsp;выбрали: наб. реки Карповки&nbsp;5, лит&nbsp;П, м. Петроградская</p>
           </div>
