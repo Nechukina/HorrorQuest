@@ -86,3 +86,5 @@ export enum MainLocation {
 export enum MaxElementCountOnScreen {
   ToastError = 1,
 }
+
+export const STEP_BACK = -1;
