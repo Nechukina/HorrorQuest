@@ -3,13 +3,14 @@ import { AuthData, UserData } from '../types/user-process';
 import { ThunkOptions } from '../types/state';
 import { APIRoute, AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
-import { Quest, QuestData, Quests } from '../types/quests-data';
-import { BookingQuests } from '../types/booking-data';
+import { Quest, QuestData, Quests } from '../types/quests';
+import { BookingQuests } from '../types/booking';
 import { generatePath } from 'react-router-dom';
 import { pushNotification } from './notifications/notifications.slice';
 import 'react-toastify/dist/ReactToastify.css';
-import { BookingData, BookingPostData } from '../types/booking-form-data';
+import { BookingData, BookingPostData } from '../types/booking-form';
 import { redirectToRoute } from './actions';
+import { ReservationQuest } from '../types/reservation-quests';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
@@ -107,6 +108,35 @@ export const postBookingQuestAction = createAsyncThunk<BookingData, BookingPostD
       return data;
     } catch (err) {
       dispatch(pushNotification({ type: 'error', message: 'Ошибка бронирования квеста' }));
+      throw err;
+    }
+  }
+);
+
+export const fetchReservationQuestsAction = createAsyncThunk<ReservationQuest[], undefined, ThunkOptions>(
+  'data/fetchReservationQuests',
+  async (_arg, { dispatch, extra: api }) => {
+    try {
+      const { data } = await api.get<ReservationQuest[]>(APIRoute.Reservation);
+
+      return data;
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Ошибка загрузки забронированных квестов' }));
+      throw err;
+    }
+  }
+);
+
+export const deleteReservationQuestAction = createAsyncThunk<string, string, ThunkOptions>(
+  'data/deleteReservationQuest',
+  async (placeId, { dispatch, extra: api }) => {
+    try {
+      await api.delete(`${APIRoute.Reservation}/${placeId}`);
+      dispatch(pushNotification({ type: 'info', message: 'Бронирование удалено' }));
+
+      return placeId;
+    } catch (err) {
+      dispatch(pushNotification({ type: 'error', message: 'Ошибка удаления бронирования' }));
       throw err;
     }
   }

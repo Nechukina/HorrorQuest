@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { BookingQuest, BookingQuests } from '../../types/booking-data';
+import { BookingQuest, BookingQuests } from '../../types/booking';
 import { NameSpace, Status } from '../../const';
 import { fetchBookingQuestsAction } from '../api-actions';
 

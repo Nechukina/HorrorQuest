@@ -1,5 +1,5 @@
 import { NameSpace, Status } from '../../const';
-import { BookingQuest, BookingQuests } from '../../types/booking-data';
+import { BookingQuest, BookingQuests } from '../../types/booking';
 import { State } from '../../types/state';
 
 

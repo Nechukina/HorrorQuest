@@ -2,9 +2,9 @@ import { Marker, layerGroup } from 'leaflet';
 import { useCallback, useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
 import { BOOKING_ZOOM, activeCustomIcon, defaultCustomIcon } from '../../const';
-import { BookingQuest } from '../../types/booking-data';
-import { changeCurrentPlace } from '../../store/booking-data/booking-data.slice';
-import { getBookingQuests, getCurrentQuest } from '../../store/booking-data/booking-data.selectors';
+import { BookingQuest } from '../../types/booking';
+import { changeCurrentPlace } from '../../store/booking/booking.slice';
+import { getBookingQuests, getCurrentQuest } from '../../store/booking/booking.selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import useMap from '../../hooks/use-map/use-map';
 

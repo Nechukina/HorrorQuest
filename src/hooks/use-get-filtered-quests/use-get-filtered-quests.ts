@@ -1,5 +1,5 @@
 import { LevelFilter, TypeFilter } from '../../const';
-import { Quests } from '../../types/quests-data';
+import { Quests } from '../../types/quests';
 
 
 function useGetFilteredQuests(quests: Quests, type: string, level: string): Quests {

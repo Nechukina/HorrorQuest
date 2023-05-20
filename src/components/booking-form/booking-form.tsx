@@ -1,12 +1,13 @@
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { BookingData, BookingFormFields, BookingPostData, FormField } from '../../types/booking-form-data';
+import { BookingData, BookingFormFields, BookingPostData, FormField } from '../../types/booking-form';
 import { DateSlot } from '../../const';
-import { getQuest } from '../../store/quest-data/quest-data.selectors';
-import { getCurrentQuest } from '../../store/booking-data/booking-data.selectors';
+import { getQuest } from '../../store/quest/quest.selectors';
+import { getCurrentQuest } from '../../store/booking/booking.selectors';
 import Loader from '../loader/loader';
 import SlotsList from './slots-list';
-import { useAppSelector } from '../../hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { postBookingQuestAction } from '../../store/api-actions';
 
 type FormFieldKey = keyof BookingFormFields;
 
@@ -47,7 +48,7 @@ function BookingForm(): JSX.Element {
   } = useForm<BookingFormFields>({
     mode: 'onChange'
   });
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
 
   const [currentDate, setCurrentDate] = useState<DateSlot | null>(null);
   const [currentTime, setCurrentTime] = useState('');
@@ -93,7 +94,7 @@ function BookingForm(): JSX.Element {
       bookingData: bookingData
     };
 
-    //dispatch(bookQuestAction(bookingPostData));
+    dispatch(postBookingQuestAction(bookingPostData));
     // eslint-disable-next-line no-console
     console.log(bookingPostData);
     resetBookingFormData();

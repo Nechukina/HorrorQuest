@@ -1,5 +1,5 @@
 import { DateSlot, SlotName } from '../../const';
-import { Slots } from '../../types/booking-data';
+import { Slots } from '../../types/booking';
 import Loader from '../loader/loader';
 import TimeRadioButton from './time-radio-button';
 

@@ -1,7 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { getQuests } from '../../store/quests-data/quests-data.selectors';
+import { getQuests } from '../../store/quests/quests.selectors';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
 import { fetchQuestsAction } from '../../store/api-actions';

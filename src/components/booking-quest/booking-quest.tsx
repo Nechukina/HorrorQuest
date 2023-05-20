@@ -1,7 +1,7 @@
 import { useAppSelector } from '../../hooks';
-import { QuestData } from '../../types/quests-data';
+import { QuestData } from '../../types/quests';
 import BookingForm from '../booking-form/booking-form';
-import { getStatus } from '../../store/booking-data/booking-data.selectors';
+import { getStatus } from '../../store/booking/booking.selectors';
 import { Status } from '../../const';
 import Loader from '../loader/loader';
 import MapBooking from '../map/map-booking';

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { NameSpace, Status } from '../../const';
-import { Quest } from '../../types/quests-data';
+import { Quest } from '../../types/quests';
 import { fetchQuestsAction } from '../api-actions';
 
 export type QestsSlice = {

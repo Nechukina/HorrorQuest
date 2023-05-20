@@ -1,7 +1,7 @@
 import { Link, generatePath } from 'react-router-dom';
 import { useAppSelector } from '../../hooks';
 import Page404 from '../../pages/page-404/page-404';
-import { getQuest } from '../../store/quest-data/quest-data.selectors';
+import { getQuest } from '../../store/quest/quest.selectors';
 import { AppRoute, AuthorizationStatus, LevelFilter, TypeFilter } from '../../const';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 
