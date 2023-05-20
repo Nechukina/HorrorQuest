@@ -11,6 +11,7 @@ import QuestCardList from '../../components/quest-card-list/quest-card-list';
 import { getLevel, getType } from '../../store/quests-filter/quests-filter.selectors';
 import useGetFilteredQuests from '../../hooks/use-get-filtered-quests/use-get-filtered-quests';
 import { LevelFilter, TypeFilter } from '../../const';
+import SvgPath from '../../components/svg-path/svg-path';
 
 function MainPage (): JSX.Element {
   const dispatch = useAppDispatch();
@@ -25,10 +26,11 @@ function MainPage (): JSX.Element {
 
   return (
     <>
-      <Helmet>
-        <title>Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Escape Room</title>
+        </Helmet>
         <Header />
         <main className="page-content">
           <div className="container">

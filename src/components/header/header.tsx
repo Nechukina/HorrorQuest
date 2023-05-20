@@ -18,7 +18,7 @@ function Header(): JSX.Element {
         <span className="logo header__logo">
           <Link className="link" to={AppRoute.Main}>
             <svg width="134" height="52" aria-hidden="true">
-              <use xlinkHref="#logo"></use>
+              <image href="/img/sprite/logo.svg" />
             </svg>
           </Link>
         </span>

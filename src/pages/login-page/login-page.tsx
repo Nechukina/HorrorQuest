@@ -2,14 +2,16 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
+import SvgPath from '../../components/svg-path/svg-path';
 
 function LoginPage(): JSX.Element {
   return (
     <>
-      <Helmet>
-        <title>Авторизация - Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Авторизация - Escape Room</title>
+        </Helmet>
         <Header />
         <main className="decorated-page login">
           <div className="decorated-page__decor" aria-hidden="true">

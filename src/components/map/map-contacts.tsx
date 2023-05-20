@@ -1,34 +1,28 @@
-import { MapContainer, Marker, Popup, TileLayer } from 'react-leaflet';
-import { ContactsLocation } from '../../const';
+import { useEffect, useRef } from 'react';
+import { Marker } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import L from 'leaflet';
-import iconMarker from 'leaflet/dist/images/marker-icon.png';
-import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import { defaultCustomIcon, ContactsLocation, CONTACTS_ZOOM } from '../../const';
+import useMap from '../../hooks/use-map/use-map';
 
-L.Icon.Default.mergeOptions({
-  iconUrl: iconMarker,
-  shadowUrl: iconShadow,
-});
-
-
-// const markerIcon = new L.Icon({
-//   iconUrl: './pin-active.svg',
-//   iconSize: [27, 39],
-//   iconAnchor: [13.5, 39]
-// });
 function MapContacts(): JSX.Element {
+  const mapRef = useRef(null);
+  const map = useMap(mapRef, [ContactsLocation.lat, ContactsLocation.lng], CONTACTS_ZOOM);
+
+  useEffect(() => {
+    if (map) {
+      const marker = new Marker({
+        lat: ContactsLocation.lat,
+        lng: ContactsLocation.lng
+      });
+
+      marker.setIcon(defaultCustomIcon).addTo(map);
+    }
+  }, [map]);
+
   return (
-    <MapContainer className="map__container" center={ContactsLocation} zoom={13} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={ContactsLocation} >
-        <Popup>
-        Санкт-Петербург,<br/> Набережная реки Карповка, д 5П
-        </Popup>
-      </Marker>
-    </MapContainer>
+    <div className="map">
+      <div className="map__container" ref={mapRef}></div>
+    </div>
   );
 }
 

@@ -3,15 +3,17 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import { AppRoute } from '../../const';
 import { Helmet } from 'react-helmet-async';
+import SvgPath from '../../components/svg-path/svg-path';
 
 function Page404(): JSX.Element {
 
   return (
     <>
-      <Helmet>
-        <title>Страница не найдена - Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Страница не найдена - Escape Room</title>
+        </Helmet>
         <Header />
         <main className="decorated-page quest-page">
           <div className="container container--size-l">

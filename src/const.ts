@@ -1,14 +1,26 @@
+import { Icon } from 'leaflet';
 
 export enum AppRoute {
   Main = '/',
-  Login = '/v1/escape-room/login',
-  Logout = '/v1/escape-room/logout',
-  Quest = '/v1/escape-room/quest',
-  QuestInfo = '/v1/escape-room/quest/:id',
-  Booking = '/v1/escape-room/quest/:id/booking',
-  Reservation = '/v1/escape-room/reservation',
-  Contacts = '/v1/escape-room/contacts'
+  Login = '/login',
+  Logout = '/logout',
+  Quest = '/quest',
+  QuestInfo = '/quest/:id',
+  Booking = '/quest/:id/booking',
+  Reservation = '/reservation',
+  Contacts = '/contacts'
   }
+
+
+export enum APIRoute {
+  Reservation = '/reservation',
+  Canceling = '/reservation/:reservationId',
+  Quests = '/quest',
+  Quest = '/quest/:questId',
+  Booking = '/quest/:id/booking',
+  Login = '/login',
+  Logout = '/logout',
+}
 
 export enum AuthorizationStatus {
     Auth = 'AUTH',
@@ -91,6 +103,22 @@ export enum ContactsLocation {
   lat = 59.968456,
   lng = 30.31759,
 }
+
+export const currentCustomIcon = new Icon({
+  iconUrl: '/img/svg/pin-active.svg',
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39],
+
+});
+
+export const defaultCustomIcon = new Icon({
+  iconUrl: '/img/svg/pin-default.svg',
+  iconSize: [27, 39],
+  iconAnchor: [13.5, 39]
+});
+
+export const BOOKING_ZOOM = 10;
+export const CONTACTS_ZOOM = 10;
 
 
 export enum MaxElementCountOnScreen {

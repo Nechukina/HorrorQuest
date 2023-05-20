@@ -5,6 +5,7 @@ import Header from '../../components/header/header';
 import { useAppSelector } from '../../hooks';
 import { getQuest } from '../../store/quest-data/quest-data.selectors';
 import Page404 from '../page-404/page-404';
+import SvgPath from '../../components/svg-path/svg-path';
 
 function BookingPage (): JSX.Element {
   const quest = useAppSelector(getQuest);
@@ -16,10 +17,11 @@ function BookingPage (): JSX.Element {
   }
   return (
     <>
-      <Helmet>
-        <title>Бронирование квеста - Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Бронирование квеста - Escape Room</title>
+        </Helmet>
         <Header />
         <main className="page-content decorated-page">
           <BookingQuest id={id} quest={quest}/>

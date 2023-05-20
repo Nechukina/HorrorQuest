@@ -6,6 +6,7 @@ import { useAppDispatch } from '../../hooks';
 import { fetchBookingQuestsAction, fetchQuestAction } from '../../store/api-actions';
 import { useParams } from 'react-router-dom';
 import QuestInfo from '../../components/quest-info/quest-info';
+import SvgPath from '../../components/svg-path/svg-path';
 
 function QuestPage(): JSX.Element {
   const {id} = useParams();
@@ -20,10 +21,11 @@ function QuestPage(): JSX.Element {
 
   return (
     <>
-      <Helmet>
-        <title>Квест - Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Квест - Escape Room</title>
+        </Helmet>
         <Header />
         <QuestInfo id={questId} />
         <Footer />

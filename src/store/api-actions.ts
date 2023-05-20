@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AuthData, UserData } from '../types/user-process';
 import { ThunkOptions } from '../types/state';
-import { AppRoute } from '../const';
+import { APIRoute, AppRoute } from '../const';
 import { dropToken, saveToken } from '../services/token';
 import { Quest, QuestData, Quests } from '../types/quests-data';
 import { BookingQuests } from '../types/booking-data';
@@ -16,7 +16,7 @@ export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOption
   'user/checkAuth',
   async (_arg, { dispatch, extra: api}) => {
     try {
-      const {data} = await api.get<UserData>(AppRoute.Login);
+      const {data} = await api.get<UserData>(APIRoute.Login);
       return data;
     } catch (err) {
       dispatch(pushNotification({ type: 'error', message: 'Доступ к странице закрыт. Пожалуйста, авторизуйтесь' }));
@@ -29,7 +29,7 @@ export const loginAction = createAsyncThunk<UserData, AuthData & {onSuccess: () 
   'user/login',
 async ({email, password, onSuccess}, { dispatch, extra: api}) => {
   try {
-    const {data} = await api.post<UserData>(`${AppRoute.Login}`, {email, password});
+    const {data} = await api.post<UserData>(`${APIRoute.Login}`, {email, password});
     saveToken(data.token);
     onSuccess();
     dispatch(pushNotification({ type: 'success', message: 'Авторизация успешна' }));
@@ -45,7 +45,7 @@ export const logoutAction = createAsyncThunk<void, undefined, ThunkOptions>(
   'user/logout',
   async (_arg, { dispatch ,extra: api}) => {
     try {
-      await api.delete(`${AppRoute.Logout}`);
+      await api.delete(`${APIRoute.Logout}`);
       dropToken();
     } catch (err) {
       dispatch(pushNotification({ type: 'error', message: 'Ошибка завершения сессии. Попробуйте снова' }));
@@ -58,7 +58,7 @@ export const fetchQuestAction = createAsyncThunk<QuestData, string, ThunkOptions
   'data/fetchQuest',
   async (questId, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<QuestData>(`${AppRoute.Quest}/${questId}`);
+      const { data } = await api.get<QuestData>(generatePath(APIRoute.Quest, { questId: questId.toString() }));
 
       return data;
     } catch (err) {
@@ -72,7 +72,7 @@ export const fetchQuestsAction = createAsyncThunk<Quests, undefined, ThunkOption
   'data/fetchQuests',
   async (_arg, { dispatch ,extra: api }) => {
     try {
-      const { data } = await api.get<Quest[]>(AppRoute.Quest);
+      const { data } = await api.get<Quest[]>(APIRoute.Quests);
 
       return data;
     } catch (err) {
@@ -87,7 +87,7 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
   'data/fetchBookingQuests',
   async (questId, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.get<BookingQuests>(generatePath(AppRoute.Booking, { id: questId.toString() }));
+      const { data } = await api.get<BookingQuests>(generatePath(APIRoute.Booking, { id: questId.toString() }));
 
       return data;
     } catch (err) {
@@ -101,7 +101,7 @@ export const postBookingQuestAction = createAsyncThunk<BookingData, BookingPostD
   'data/postBookingQuest',
   async ({ questId, bookingData }, { dispatch, extra: api }) => {
     try {
-      const { data } = await api.post<BookingData>(generatePath(AppRoute.Booking, { id: questId.toString() }), bookingData);
+      const { data } = await api.post<BookingData>(generatePath(APIRoute.Booking, { id: questId.toString() }), bookingData);
       dispatch(pushNotification({ type: 'success', message: 'Квест забронирован!' }));
       dispatch(redirectToRoute(AppRoute.Reservation));
       return data;

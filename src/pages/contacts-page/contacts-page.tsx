@@ -2,6 +2,7 @@ import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import MapContacts from '../../components/map/map-contacts';
+import SvgPath from '../../components/svg-path/svg-path';
 // import Map from '../../components/map/map';
 // import { MainLocation } from '../../const';
 
@@ -9,10 +10,11 @@ import MapContacts from '../../components/map/map-contacts';
 function ContactsPage(): JSX.Element {
   return (
     <>
-      <Helmet>
-        <title>Контакты - Escape Room</title>
-      </Helmet>
+      <SvgPath />
       <div className="wrapper">
+        <Helmet>
+          <title>Контакты - Escape Room</title>
+        </Helmet>
         <Header />
         <main className="page-content decorated-page">
           <div className="decorated-page__decor" aria-hidden="true">
