@@ -1,12 +1,12 @@
 import { Marker, layerGroup } from 'leaflet';
 import { useCallback, useEffect, useRef } from 'react';
 import 'leaflet/dist/leaflet.css';
-import useMap from '../../hooks/use-map/use-map';
+import { BOOKING_ZOOM, activeCustomIcon, defaultCustomIcon } from '../../const';
 import { BookingQuest } from '../../types/booking-data';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getBookingQuests, getCurrentQuest } from '../../store/booking-data/booking-data.selectors';
 import { changeCurrentPlace } from '../../store/booking-data/booking-data.slice';
-import { BOOKING_ZOOM, currentCustomIcon, defaultCustomIcon } from '../../const';
+import { getBookingQuests, getCurrentQuest } from '../../store/booking-data/booking-data.selectors';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import useMap from '../../hooks/use-map/use-map';
 
 
 function MapBooking(): JSX.Element {
@@ -38,7 +38,7 @@ function MapBooking(): JSX.Element {
 
         marker.setIcon(
           currentQuest && questPlace.location.address === currentQuest.location.address
-            ? currentCustomIcon
+            ? activeCustomIcon
             : defaultCustomIcon
         ).on('click', () => handleMarkerClick(questPlace))
           .addTo(markerLayer);

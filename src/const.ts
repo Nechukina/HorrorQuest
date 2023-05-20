@@ -104,17 +104,17 @@ export enum ContactsLocation {
   lng = 30.31759,
 }
 
-export const currentCustomIcon = new Icon({
+export const activeCustomIcon = new Icon({
   iconUrl: '/img/svg/pin-active.svg',
-  iconSize: [27, 39],
-  iconAnchor: [13.5, 39],
+  iconSize: [23, 42],
+  iconAnchor: [11.5, 42]
 
 });
 
 export const defaultCustomIcon = new Icon({
   iconUrl: '/img/svg/pin-default.svg',
-  iconSize: [27, 39],
-  iconAnchor: [13.5, 39]
+  iconSize: [23, 42],
+  iconAnchor: [11.5, 42]
 });
 
 export const BOOKING_ZOOM = 10;
