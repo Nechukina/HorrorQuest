@@ -22,9 +22,9 @@ const bookingFields: Record<FormFieldKey, FormField> = {
   tel: {
     type: 'tel',
     label: 'Контактный телефон',
-    placeholder: 'Телефон',
+    placeholder: '+7(123)456-78-90',
     pattern: /^(\+[7]|[8])?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){8,12}\d$/,
-    errorText: 'Пожалуйста, введите корректный номер мобильного телефона'
+    errorText: 'Пожалуйста, введите корректный номер мобильного телефона  в формате +7(000)0000000'
   },
   person: {
     type: 'number',
@@ -42,7 +42,7 @@ function BookingForm(): JSX.Element {
     register,
     handleSubmit,
     formState: {
-      errors
+      errors , isValid
     },
     reset
   } = useForm<BookingFormFields>({
@@ -94,10 +94,7 @@ function BookingForm(): JSX.Element {
       bookingData: bookingData
     };
 
-    dispatch(postBookingQuestAction(bookingPostData));
-    // eslint-disable-next-line no-console
-    console.log(bookingPostData);
-    resetBookingFormData();
+    dispatch(postBookingQuestAction({...bookingPostData, onSuccess: resetBookingFormData}));
   };
 
   return (
@@ -156,7 +153,7 @@ function BookingForm(): JSX.Element {
       </fieldset>
       <button
         className="btn btn--accent btn--cta booking-form__submit"
-        type="submit"
+        type="submit" disabled={!isValid}
       >
         Забронировать
       </button>

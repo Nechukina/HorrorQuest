@@ -17,11 +17,7 @@ function BookingPage (): JSX.Element {
   const dispatch = useAppDispatch();
   const quest = useAppSelector(getQuest);
   const questLoadingStatus = useAppSelector(getStatus);
-  const isQuestLoading = questLoadingStatus === Status.Loading;
   const bookingLoadingStatus = useAppSelector(getBookingStatus);
-
-
-  const isBookingQuestsLoading = bookingLoadingStatus === Status.Loading;
   const questId = useParams().id;
   const id = String(questId);
 
@@ -30,7 +26,7 @@ function BookingPage (): JSX.Element {
     dispatch(fetchBookingQuestsAction(id));
   }, [dispatch, id]);
 
-  if (!quest || isBookingQuestsLoading || isQuestLoading) {
+  if (!quest || questLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Idle) {
     return <Loader />;
   }
   return (

@@ -98,19 +98,20 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
   }
 );
 
-export const postBookingQuestAction = createAsyncThunk<BookingData, BookingPostData, ThunkOptions>(
+export const postBookingQuestAction = createAsyncThunk<BookingData, BookingPostData & {onSuccess: () => void}, ThunkOptions>(
   'data/postBookingQuest',
-  async ({ questId, bookingData }, { dispatch, extra: api }) => {
-    try {
-      const { data } = await api.post<BookingData>(generatePath(APIRoute.Booking, { id: questId.toString() }), bookingData);
-      dispatch(pushNotification({ type: 'success', message: 'Квест забронирован!' }));
-      dispatch(redirectToRoute(AppRoute.Reservation));
-      return data;
-    } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Ошибка бронирования квеста' }));
-      throw err;
-    }
+async ({ questId, bookingData, onSuccess }, { dispatch, extra: api }) => {
+  try {
+    const { data } = await api.post<BookingData>(generatePath(APIRoute.Booking, { id: questId.toString() }), bookingData);
+    dispatch(pushNotification({ type: 'success', message: 'Квест забронирован!' }));
+    dispatch(redirectToRoute(AppRoute.Reservation));
+    onSuccess();
+    return data;
+  } catch (err) {
+    dispatch(pushNotification({ type: 'error', message: 'Ошибка бронирования квеста' }));
+    throw err;
   }
+}
 );
 
 export const fetchReservationQuestsAction = createAsyncThunk<ReservationQuest[], undefined, ThunkOptions>(
