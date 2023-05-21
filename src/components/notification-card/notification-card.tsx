@@ -14,7 +14,7 @@ function NotificationCard(): JSX.Element {
       const toastOptions = {
         autoClose: notification.duration,
         toastId: notification.id,
-        onClose: () => dispatch(clearNotification(notification.id))
+        onClose: () => dispatch(clearNotification(notification.id)),
       };
 
       if (toast.isActive(notification.id)) {

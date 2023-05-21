@@ -15,13 +15,12 @@ import { ReservationQuest } from '../types/reservation-quests';
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(
   'user/checkAuth',
-  async (_arg, { dispatch, extra: api}) => {
+  async (_arg, { extra: api}) => {
     try {
       const {data} = await api.get<UserData>(APIRoute.Login);
       return data;
-    } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Доступ к странице закрыт. Пожалуйста, авторизуйтесь' }));
-      throw err;
+    } catch {
+      throw new Error();
     }
   }
 );
@@ -92,7 +91,7 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
 
       return data;
     } catch (err) {
-      dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о квестах' }));
+      dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о бронировании квестов' }));
       throw err;
     }
   }

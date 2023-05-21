@@ -28,11 +28,6 @@ export enum AuthorizationStatus {
     Unknown = 'UNKNOWN',
   }
 
-export enum StatusCodes {
-  BAD_REQUEST = 400,
-  NOT_FOUND = 404,
-  UNAUTHORIZED = 401,
-}
 
 export enum NameSpace {
   Quests = 'QUESTS',
