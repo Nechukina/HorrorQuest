@@ -7,7 +7,6 @@ import { ToastContainer } from 'react-toastify';
 import { Provider } from 'react-redux';
 import { store } from './store/store';
 import NotificationCard from './components/notification-card/notification-card';
-import { MaxElementCountOnScreen } from './const';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -18,7 +17,6 @@ root.render(
     <Provider store={store}>
       <HistoryRouter history={browserHistory}>
         <ToastContainer
-          limit={MaxElementCountOnScreen.ToastError}
           theme='colored'
         />
         <NotificationCard />

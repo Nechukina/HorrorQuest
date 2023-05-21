@@ -116,8 +116,4 @@ export const BOOKING_ZOOM = 10;
 export const CONTACTS_ZOOM = 10;
 
 
-export enum MaxElementCountOnScreen {
-  ToastError = 1,
-}
-
 export const STEP_BACK = -1;
