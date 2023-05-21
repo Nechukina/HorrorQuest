@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import { BookingData, BookingFormFields, BookingPostData, FormField } from '../../types/booking-form';
+import { BookingData, BookingFormFields, BookingPostData } from '../../types/booking-form';
 import { DateSlot } from '../../const';
 import { getQuest } from '../../store/quest/quest.selectors';
 import { getCurrentQuest } from '../../store/booking/booking.selectors';
@@ -9,33 +9,6 @@ import SlotsList from './slots-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { postBookingQuestAction } from '../../store/api-actions';
 
-type FormFieldKey = keyof BookingFormFields;
-
-const bookingFields: Record<FormFieldKey, FormField> = {
-  name: {
-    type: 'text',
-    label: 'Ваше имя',
-    placeholder: 'Имя',
-    pattern: /^.{1,15}$/,
-    errorText: 'От 1 до 15 символов'
-  },
-  tel: {
-    type: 'tel',
-    label: 'Контактный телефон',
-    placeholder: '+7(123)456-78-90',
-    pattern: /^(\+[7]|[8])?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){8,12}\d$/,
-    errorText: 'Пожалуйста, введите корректный номер мобильного телефона  в формате +7(000)0000000'
-  },
-  person: {
-    type: 'number',
-    label: 'Количество участников',
-    placeholder: 'Количество участников',
-    pattern: /[^0-9]/i,
-    errorText: ''
-  }
-};
-
-const bookingFieldKeys = Object.keys(bookingFields) as FormFieldKey[];
 
 function BookingForm(): JSX.Element {
   const {
@@ -68,8 +41,6 @@ function BookingForm(): JSX.Element {
 
   const [minPersonCount, maxPersonCount] = quest.peopleMinMax;
 
-  bookingFields.person.pattern = new RegExp(`^([${minPersonCount}-${maxPersonCount}])$`);
-  bookingFields.person.errorText = `Количество участников от ${minPersonCount} до ${maxPersonCount}`;
 
   const resetBookingFormData = () => {
     setCurrentDate(null);
@@ -113,29 +84,58 @@ function BookingForm(): JSX.Element {
       </fieldset>
       <fieldset className="booking-form__section">
         <legend className="visually-hidden">Контактная информация</legend>
-        {bookingFieldKeys.map((key: FormFieldKey) => {
-          const { type, label, placeholder, pattern, errorText } = bookingFields[key];
 
-          return (
-            <div className="custom-input login-form__input" key={key}>
-              <label className="custom-input__label" htmlFor={key}>{label}</label>
-              <input
-                {...register(`${key}`, {
-                  required: 'Это обязательное поле',
-                  pattern: {
-                    value: pattern,
-                    message: errorText
-                  }
-                })}
-                type={type}
-                id={key}
-                name={key}
-                placeholder={placeholder}
-              />
-              {errors[key] && <p>{errors[key]?.message}</p>}
-            </div>
-          );
-        })}
+        <div className="custom-input login-form__input" key="name">
+          <label className="custom-input__label" htmlFor="name">Ваше имя</label>
+          <input {...register('name', {
+            required: 'Это обязательное поле',
+            pattern: {
+              value: /^.{1,15}$/,
+              message: 'От 1 до 15 символов'
+            }
+          })}
+          type="text"
+          id="name"
+          name="name"
+          placeholder="Имя"
+          />
+          {errors['name'] && <p>{errors['name']?.message}</p>}
+        </div>
+        <div className="custom-input login-form__input" key="tel">
+          <label className="custom-input__label" htmlFor="tel">Контактный телефон</label>
+          <input
+            {...register('tel', {
+              required: 'Это обязательное поле',
+              pattern: {
+                value: /^(\+[7]|[8])?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){8,12}\d$/,
+                message: 'Пожалуйста, введите корректный номер мобильного телефона  в формате +7(000)0000000'
+              }
+            })}
+            type="tel"
+            id="tel"
+            name="tel"
+            placeholder='+7(123)456-78-90'
+          />
+          {errors['tel'] && <p>{errors['tel']?.message}</p>}
+        </div>
+        <div className="custom-input login-form__input" key="person">
+          <label className="custom-input__label" htmlFor="person">Количество участников</label>
+          <input
+            {...register('person', {
+              required: 'Это обязательное поле',
+              pattern: {
+                value:new RegExp(`^([${minPersonCount}-${maxPersonCount}])$`),
+                message: `Количество участников от ${minPersonCount} до ${maxPersonCount}`
+              }
+            })}
+            type="number"
+            id="person"
+            name="person"
+            placeholder='Количество участников'
+          />
+          {errors['person'] && <p>{errors['person']?.message}</p>}
+        </div>
+
         <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
           <input
             type="checkbox"

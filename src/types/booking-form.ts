@@ -6,14 +6,6 @@ export type BookingFormFields = {
   person: string;
 };
 
-export type FormField = {
-  type: string;
-  label: string;
-  placeholder: string;
-  pattern: RegExp;
-  errorText: string;
-};
-
 
 export type BookingData = {
   date: DateSlot;

@@ -16,17 +16,11 @@ export const notificationsSlice = createSlice({
   reducers: {
     pushNotification: (state, action: PayloadAction<Omit<Notification, 'id'>>) => {
       const id = nanoid();
-      // eslint-disable-next-line no-debugger
-      debugger;
-      // eslint-disable-next-line no-console
-      console.log(id);
-
 
       state.notifications.push({ id, ...action.payload });
     },
     clearNotification: (state, action: PayloadAction<string>) => {
-      // eslint-disable-next-line no-debugger
-      debugger;
+
       state.notifications = state.notifications.filter((item) => item.id !== action.payload);
     }
   }
