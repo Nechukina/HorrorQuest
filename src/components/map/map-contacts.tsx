@@ -15,7 +15,9 @@ function MapContacts(): JSX.Element {
         lng: ContactsLocation.lng
       });
 
-      marker.setIcon(defaultCustomIcon).addTo(map);
+      marker
+        .setIcon(defaultCustomIcon)
+        .addTo(map);
     }
   }, [map]);
 

@@ -1,23 +1,24 @@
 import { Helmet } from 'react-helmet-async';
-import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
-import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getQuest, getStatus } from '../../store/quest/quest.selectors';
-import SvgPath from '../../components/svg-path/svg-path';
 import { useEffect } from 'react';
-import { fetchBookingQuestsAction, fetchQuestAction } from '../../store/api-actions';
-import Loader from '../../components/loader/loader';
 import { useParams } from 'react-router-dom';
-import { Status } from '../../const';
-import { getBookingStatus } from '../../store/booking/booking.selectors';
-import MapBooking from '../../components/map/map-booking';
 import BookingForm from '../../components/booking-form/booking-form';
+import Footer from '../../components/footer/footer';
+import { fetchBookingQuestsAction, fetchQuestAction } from '../../store/api-actions';
+import { getBookingQuests, getBookingStatus } from '../../store/booking/booking.selectors';
+import { getQuest, getStatus } from '../../store/quest/quest.selectors';
+import Header from '../../components/header/header';
+import Loader from '../../components/loader/loader';
+import SvgPath from '../../components/svg-path/svg-path';
+import MapBooking from '../../components/map/map-booking';
+import { Status } from '../../const';
+import { useAppDispatch, useAppSelector } from '../../hooks';
 
 function BookingPage (): JSX.Element {
   const dispatch = useAppDispatch();
   const quest = useAppSelector(getQuest);
   const questLoadingStatus = useAppSelector(getStatus);
   const bookingLoadingStatus = useAppSelector(getBookingStatus);
+  const bookingQuests = useAppSelector(getBookingQuests);
   const questId = useParams().id;
   const id = String(questId);
 
@@ -26,7 +27,7 @@ function BookingPage (): JSX.Element {
     dispatch(fetchBookingQuestsAction(id));
   }, [dispatch, id]);
 
-  if (!quest || questLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Idle) {
+  if (!quest || !bookingQuests || questLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Loading || bookingLoadingStatus === Status.Idle) {
     return <Loader />;
   }
   return (
@@ -49,10 +50,13 @@ function BookingPage (): JSX.Element {
               </h1>
               <p className="title title--size-m title--uppercase page-content__title">{quest.title}</p>
             </div>
-            <div className="page-content__item">
-              <MapBooking />
-            </div>
-            <BookingForm />
+            {bookingQuests.length &&
+            <>
+              <div className="page-content__item">
+                <MapBooking />
+              </div>
+              <BookingForm />
+            </>}
           </div>
         </main>
         <Footer />

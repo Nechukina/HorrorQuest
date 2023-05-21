@@ -11,12 +11,12 @@ import useMap from '../../hooks/use-map/use-map';
 
 function MapBooking(): JSX.Element {
   let currentQuest = useAppSelector(getCurrentQuest);
-  const questPlaces = useAppSelector(getBookingQuests);
+  const bookingQuests = useAppSelector(getBookingQuests);
   const dispatch = useAppDispatch();
   const mapRef = useRef(null);
 
   if (!currentQuest) {
-    currentQuest = questPlaces[0];
+    currentQuest = bookingQuests[0];
   }
 
   const map = useMap(mapRef, [currentQuest.location.coords[0],currentQuest.location.coords[1]], BOOKING_ZOOM);
@@ -28,26 +28,31 @@ function MapBooking(): JSX.Element {
 
   useEffect(() => {
     if (map && currentQuest) {
-      map.setView(currentQuest.location.coords);
+      map
+        .setView(currentQuest.location.coords);
+
       const markerLayer = layerGroup().addTo(map);
-      questPlaces.forEach((questPlace) => {
+
+      bookingQuests.forEach((questPlace) => {
         const marker = new Marker({
           lat: questPlace.location.coords[0],
           lng: questPlace.location.coords[1]
         });
 
-        marker.setIcon(
-          currentQuest && questPlace.location.address === currentQuest.location.address
-            ? activeCustomIcon
-            : defaultCustomIcon
-        ).on('click', () => handleMarkerClick(questPlace))
+        marker
+          .setIcon(
+            currentQuest && questPlace.location.address === currentQuest.location.address
+              ? activeCustomIcon
+              : defaultCustomIcon
+          ).on('click', () => handleMarkerClick(questPlace))
           .addTo(markerLayer);
       });
+
       return () => {
         map.removeLayer(markerLayer);
       };
     }
-  }, [map, questPlaces, currentQuest, handleMarkerClick]);
+  }, [map, bookingQuests, currentQuest, handleMarkerClick]);
 
   return (
     <div className="booking-map">

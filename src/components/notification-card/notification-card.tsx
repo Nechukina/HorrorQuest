@@ -1,4 +1,5 @@
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import { useAppDispatch, useAppSelector } from '../../hooks';
 import { getNotifications } from '../../store/notifications/notifications.selectors';
 import { clearNotification } from '../../store/notifications/notifications.slice';
