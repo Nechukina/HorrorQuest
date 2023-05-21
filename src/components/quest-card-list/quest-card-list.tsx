@@ -1,9 +1,9 @@
-import { useAppSelector } from '../../hooks';
 import { getStatus } from '../../store/quests/quests.selectors';
-import QuestCard from '../quest-card/quest-card';
-import { Status } from '../../const';
 import Loader from '../loader/loader';
+import QuestCard from '../quest-card/quest-card';
 import { Quests } from '../../types/quests';
+import { Status } from '../../const';
+import { useAppSelector } from '../../hooks';
 
 type QuestCardListProps ={
   quests: Quests;

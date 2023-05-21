@@ -1,10 +1,10 @@
 import { Link, generatePath } from 'react-router-dom';
-import { useAppSelector } from '../../hooks';
-import { getQuest, getStatus } from '../../store/quest/quest.selectors';
 import { AppRoute, AuthorizationStatus, LevelFilter, Status, TypeFilter } from '../../const';
+import { getQuest, getStatus } from '../../store/quest/quest.selectors';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
 import Loader from '../loader/loader';
 import Page404 from '../../pages/page-404/page-404';
+import { useAppSelector } from '../../hooks';
 
 export type QuestInfoProps = {
   id: string;

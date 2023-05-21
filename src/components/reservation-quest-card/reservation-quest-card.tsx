@@ -1,8 +1,8 @@
 import { Link, generatePath } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks';
+import { AppRoute, LevelFilter, SlotName } from '../../const';
 import { deleteReservationQuestAction } from '../../store/api-actions';
 import { ReservationQuest } from '../../types/reservation-quests';
-import { AppRoute, LevelFilter, SlotName } from '../../const';
+import { useAppDispatch } from '../../hooks';
 
 type ReservationQuestCardProps = {
   reservationQuest: ReservationQuest;

@@ -1,6 +1,6 @@
 import { DateSlot, SlotName } from '../../const';
-import { Slots } from '../../types/booking';
 import Loader from '../loader/loader';
+import { Slots } from '../../types/booking';
 import TimeRadioButton from './time-radio-button';
 
 type SlotsConstProps = {

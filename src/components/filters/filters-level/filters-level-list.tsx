@@ -1,5 +1,5 @@
-import { LevelFilter } from '../../../const';
 import FiltersLevelItem from './filters-level-item';
+import { LevelFilter } from '../../../const';
 
 function FiltersLevelList(): JSX.Element {
   return (

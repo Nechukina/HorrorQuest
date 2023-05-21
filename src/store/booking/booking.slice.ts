@@ -1,7 +1,7 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { fetchBookingQuestsAction } from '../api-actions';
 import { BookingQuest, BookingQuests } from '../../types/booking';
 import { NameSpace, Status } from '../../const';
-import { fetchBookingQuestsAction } from '../api-actions';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 
 export type BookingSlice = {
   bookingQuest: BookingQuests;

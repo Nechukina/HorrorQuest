@@ -1,16 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { AuthData, UserData } from '../types/user-process';
-import { ThunkOptions } from '../types/state';
-import { APIRoute, AppRoute } from '../const';
-import { dropToken, saveToken } from '../services/token';
-import { Quest, QuestData, Quests } from '../types/quests';
-import { BookingQuests } from '../types/booking';
 import { generatePath } from 'react-router-dom';
-import { pushNotification } from './notifications/notifications.slice';
 import 'react-toastify/dist/ReactToastify.css';
+import { APIRoute, AppRoute } from '../const';
+import { AuthData, UserData } from '../types/user-process';
 import { BookingData, BookingPostData } from '../types/booking-form';
+import { BookingQuests } from '../types/booking';
+import { dropToken, saveToken } from '../services/token';
+import { pushNotification } from './notifications/notifications.slice';
+import { Quest, QuestData, Quests } from '../types/quests';
 import { redirectToRoute } from './actions';
 import { ReservationQuest } from '../types/reservation-quests';
+import { ThunkOptions } from '../types/state';
 
 
 export const checkAuthAction = createAsyncThunk<UserData, undefined, ThunkOptions>(

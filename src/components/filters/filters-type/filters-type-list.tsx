@@ -1,5 +1,5 @@
-import { TypeFilter } from '../../../const';
 import FiltersTypeItem from './filters-type-item';
+import { TypeFilter } from '../../../const';
 
 function FiltersTypeList(): JSX.Element {
   return (

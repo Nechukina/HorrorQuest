@@ -1,6 +1,6 @@
 import { DateSlot } from '../../const';
-import { Slot } from '../../types/booking';
 import { formatTime } from '../../utils/format-time';
+import { Slot } from '../../types/booking';
 
 type TimeRadioButtonProps = {
   day: DateSlot;

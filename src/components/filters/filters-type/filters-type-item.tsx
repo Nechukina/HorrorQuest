@@ -1,8 +1,8 @@
 import { ChangeEvent } from 'react';
-import { useAppDispatch, useAppSelector } from '../../../hooks';
-import { getType } from '../../../store/quests-filter/quests-filter.selectors';
 import { chooseType } from '../../../store/quests-filter/quests-filter.slice';
+import { getType } from '../../../store/quests-filter/quests-filter.selectors';
 import { TypeFilter } from '../../../const';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 type FiltersTypeItemProps = {
   type: string;

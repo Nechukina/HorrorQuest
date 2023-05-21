@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { NameSpace, Status } from '../../const';
 import { deleteReservationQuestAction, fetchReservationQuestsAction } from '../api-actions';
+import { NameSpace, Status } from '../../const';
 import { ReservationQuest } from '../../types/reservation-quests';
 
 

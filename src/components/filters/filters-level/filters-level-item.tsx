@@ -1,6 +1,6 @@
-import { useAppDispatch, useAppSelector } from '../../../hooks';
 import { getLevel } from '../../../store/quests-filter/quests-filter.selectors';
 import { chooseLevel } from '../../../store/quests-filter/quests-filter.slice';
+import { useAppDispatch, useAppSelector } from '../../../hooks';
 
 type FiltersLevelItemProps = {
   level: string;

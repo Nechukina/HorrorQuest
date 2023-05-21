@@ -113,7 +113,7 @@ export const defaultCustomIcon = new Icon({
 });
 
 export const BOOKING_ZOOM = 10;
-export const CONTACTS_ZOOM = 10;
+export const CONTACTS_ZOOM = 12;
 
 
 export const STEP_BACK = -1;

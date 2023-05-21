@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
-import { useAppSelector } from '../../hooks';
 import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import { useAppSelector } from '../../hooks';
 
 function LoginPageHeader(): JSX.Element {
   const authStatus = useAppSelector(getAuthorizationStatus);
