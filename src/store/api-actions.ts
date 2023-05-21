@@ -87,6 +87,7 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
   'data/fetchBookingQuests',
   async (questId, { dispatch, extra: api }) => {
     try {
+
       const { data } = await api.get<BookingQuests>(generatePath(APIRoute.Booking, { id: questId.toString() }));
 
       return data;

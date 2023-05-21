@@ -5,4 +5,5 @@ import { State } from '../../types/state';
 
 export const getBookingQuests = (state: State): BookingQuests => state[NameSpace.Booking].bookingQuest;
 export const getCurrentQuest = (state: State): BookingQuest | null => state[NameSpace.Booking].currentQuest;
-export const getStatus = (state: State): Status => state[NameSpace.Quests].status;
+export const getBookingStatus = (state: State): Status => state[NameSpace.Booking].status;
+

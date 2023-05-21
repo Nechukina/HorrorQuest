@@ -12,13 +12,13 @@ import useMap from '../../hooks/use-map/use-map';
 function MapBooking(): JSX.Element {
   let currentQuest = useAppSelector(getCurrentQuest);
   const questPlaces = useAppSelector(getBookingQuests);
-
   const dispatch = useAppDispatch();
   const mapRef = useRef(null);
 
   if (!currentQuest) {
     currentQuest = questPlaces[0];
   }
+
   const map = useMap(mapRef, [currentQuest.location.coords[0],currentQuest.location.coords[1]], BOOKING_ZOOM);
 
   const handleMarkerClick = useCallback((questPlace: BookingQuest): void => {

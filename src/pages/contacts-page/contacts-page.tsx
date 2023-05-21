@@ -3,8 +3,6 @@ import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
 import MapContacts from '../../components/map/map-contacts';
 import SvgPath from '../../components/svg-path/svg-path';
-// import Map from '../../components/map/map';
-// import { MainLocation } from '../../const';
 
 
 function ContactsPage(): JSX.Element {
@@ -56,7 +54,6 @@ function ContactsPage(): JSX.Element {
               <div className="contacts__map">
                 <div className="map">
                   <MapContacts />
-                  {/* <Map className="map__container" location={MainLocation}/> */}
                 </div>
               </div>
             </div>
