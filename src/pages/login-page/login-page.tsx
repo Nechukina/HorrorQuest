@@ -1,10 +1,27 @@
 import { Helmet } from 'react-helmet-async';
 import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
 import LoginForm from '../../components/login-form/login-form';
 import SvgPath from '../../components/svg-path/svg-path';
+import LoginPageHeader from '../../components/login-page-header/login-page-header';
+import { useAppSelector } from '../../hooks';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import { getQuest } from '../../store/quest/quest.selectors';
+import { Navigate, generatePath, useLocation } from 'react-router-dom';
+import { AppRoute, AuthorizationStatus } from '../../const';
 
 function LoginPage(): JSX.Element {
+
+  const authorizationStatus = useAppSelector(getAuthorizationStatus);
+  const quest = useAppSelector(getQuest);
+
+  const location = useLocation();
+  const route = quest && location.state ? generatePath(AppRoute.Booking, { id: quest.id }) : AppRoute.Main;
+
+  if (authorizationStatus === AuthorizationStatus.Auth) {
+    return (
+      <Navigate to={route} />
+    );
+  }
   return (
     <>
       <SvgPath />
@@ -12,7 +29,7 @@ function LoginPage(): JSX.Element {
         <Helmet>
           <title>Авторизация - Escape Room</title>
         </Helmet>
-        <Header />
+        <LoginPageHeader />
         <main className="decorated-page login">
           <div className="decorated-page__decor" aria-hidden="true">
             <picture>

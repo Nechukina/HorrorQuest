@@ -12,9 +12,11 @@ function LoginForm(): JSX.Element {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isValid },
     reset
-  } = useForm<AuthData>();
+  } = useForm<AuthData>({
+    mode: 'onChange'
+  });
 
   const onSubmit = (data: AuthData) => {
     dispatch(loginAction({...data, onSuccess: reset}));
@@ -59,7 +61,7 @@ function LoginForm(): JSX.Element {
             {errors?.password && <p>{errors?.password?.message || 'Пароль должен содержать минимум одну букву и цифру'}</p>}
           </div>
         </div>
-        <button onClick={() => navigate(STEP_BACK)} className="btn btn--accent btn--general login-form__submit" type="submit" >Войти</button>
+        <button onClick={() => navigate(STEP_BACK)} className="btn btn--accent btn--general login-form__submit" type="submit" disabled={!isValid} >Войти</button>
       </div>
     </form>
   );
