@@ -1,13 +1,13 @@
 import { Helmet } from 'react-helmet-async';
-import Footer from '../../components/footer/footer';
-import LoginForm from '../../components/login-form/login-form';
-import SvgPath from '../../components/svg-path/svg-path';
-import LoginPageHeader from '../../components/login-page-header/login-page-header';
-import { useAppSelector } from '../../hooks';
-import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
-import { getQuest } from '../../store/quest/quest.selectors';
 import { Navigate, generatePath, useLocation } from 'react-router-dom';
 import { AppRoute, AuthorizationStatus } from '../../const';
+import Footer from '../../components/footer/footer';
+import { getAuthorizationStatus } from '../../store/user-process/user-process.selectors';
+import { getQuest } from '../../store/quest/quest.selectors';
+import LoginForm from '../../components/login-form/login-form';
+import LoginPageHeader from '../../components/login-page-header/login-page-header';
+import SvgPath from '../../components/svg-path/svg-path';
+import { useAppSelector } from '../../hooks';
 
 function LoginPage(): JSX.Element {
 

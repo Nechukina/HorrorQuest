@@ -1,6 +1,8 @@
 import { Route, Routes } from 'react-router-dom';
-import { AppRoute, AuthorizationStatus } from '../../const';
+import { HelmetProvider } from 'react-helmet-async';
+import { AppRoute, Status } from '../../const';
 import BookingPage from '../../pages/booking-page/booking-page';
+import { checkAuthAction } from '../../store/api-actions';
 import LoginPage from '../../pages/login-page/login-page';
 import MainPage from '../../pages/main-page/main-page';
 import MyQuestsPage from '../../pages/my-quests-page/my-quests-page';
@@ -8,18 +10,23 @@ import Page404 from '../../pages/page-404/page-404';
 import PrivateRoute from '../private-route/private-route';
 import QuestPage from '../../pages/quest-page/quest-page';
 import ContactsPage from '../../pages/contacts-page/contacts-page';
-import { HelmetProvider } from 'react-helmet-async';
 import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks';
-import { checkAuthAction } from '../../store/api-actions';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import { getFetchStatus } from '../../store/user-process/user-process.selectors';
+import Loader from '../loader/loader';
 
 
 function App(): JSX.Element {
   const dispatch = useAppDispatch();
+  const fetchStatus = useAppSelector(getFetchStatus);
 
-  useEffect(() => () => {
+  useEffect(() => {
     dispatch(checkAuthAction());
   }, [dispatch]);
+
+  if (fetchStatus === (Status.Loading || Status.Idle)) {
+    return <Loader />;
+  }
 
   return (
     <HelmetProvider>
@@ -35,7 +42,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Booking}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute >
               <BookingPage />
             </PrivateRoute>
           }
@@ -43,7 +50,7 @@ function App(): JSX.Element {
         <Route
           path={AppRoute.Reservation}
           element={
-            <PrivateRoute authorizationStatus={AuthorizationStatus.Auth}>
+            <PrivateRoute >
               <MyQuestsPage />
             </PrivateRoute>
           }

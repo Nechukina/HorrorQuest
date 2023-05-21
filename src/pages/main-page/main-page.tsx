@@ -1,17 +1,17 @@
-import { Helmet } from 'react-helmet-async';
-import Footer from '../../components/footer/footer';
-import Header from '../../components/header/header';
-import { getQuests } from '../../store/quests/quests.selectors';
-import { useAppDispatch, useAppSelector } from '../../hooks';
 import { useEffect } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { fetchQuestsAction } from '../../store/api-actions';
 import FiltersTypeList from '../../components/filters/filters-type/filters-type-list';
 import FiltersLevelList from '../../components/filters/filters-level/filters-level-list';
-import QuestCardList from '../../components/quest-card-list/quest-card-list';
+import Footer from '../../components/footer/footer';
 import { getLevel, getType } from '../../store/quests-filter/quests-filter.selectors';
-import useGetFilteredQuests from '../../hooks/use-get-filtered-quests/use-get-filtered-quests';
+import { getQuests } from '../../store/quests/quests.selectors';
+import Header from '../../components/header/header';
 import { LevelFilter, TypeFilter } from '../../const';
 import SvgPath from '../../components/svg-path/svg-path';
+import QuestCardList from '../../components/quest-card-list/quest-card-list';
+import { useAppDispatch, useAppSelector } from '../../hooks';
+import useGetFilteredQuests from '../../hooks/use-get-filtered-quests/use-get-filtered-quests';
 
 function MainPage (): JSX.Element {
   const dispatch = useAppDispatch();

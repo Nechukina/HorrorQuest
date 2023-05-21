@@ -1,8 +1,8 @@
+import { Helmet } from 'react-helmet-async';
 import { Link } from 'react-router-dom';
+import { AppRoute } from '../../const';
 import Footer from '../../components/footer/footer';
 import Header from '../../components/header/header';
-import { AppRoute } from '../../const';
-import { Helmet } from 'react-helmet-async';
 import SvgPath from '../../components/svg-path/svg-path';
 
 function Page404(): JSX.Element {

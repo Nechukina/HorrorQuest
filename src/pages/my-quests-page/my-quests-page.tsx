@@ -1,14 +1,14 @@
+import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import {fetchReservationQuestsAction} from '../../store/api-actions';
 import Footer from '../../components/footer/footer';
+import { getStatus } from '../../store/reservation-quests/reservation-quests.selectors';
 import Header from '../../components/header/header';
+import Loader from '../../components/loader/loader';
+import { Status } from '../../const';
 import SvgPath from '../../components/svg-path/svg-path';
 import ReservationQuestList from '../../components/reservation-quests-list/reservation-quests-list';
 import { useAppDispatch, useAppSelector } from '../../hooks';
-import { getStatus } from '../../store/reservation-quests/reservation-quests.selectors';
-import { useEffect } from 'react';
-import { Status } from '../../const';
-import Loader from '../../components/loader/loader';
-import {fetchReservationQuestsAction} from '../../store/api-actions';
 
 function MyQuestsPage(): JSX.Element {
   const reservationQuestsStatus = useAppSelector(getStatus);

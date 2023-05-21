@@ -25,7 +25,6 @@ function BookingForm(): JSX.Element {
 
   const [currentDate, setCurrentDate] = useState<DateSlot | null>(null);
   const [currentTime, setCurrentTime] = useState('');
-  const [withChildren, setWithChildren] = useState(false);
 
   const onDateChange = useCallback((date: DateSlot, time: string): void => {
     setCurrentDate(date);
@@ -45,7 +44,6 @@ function BookingForm(): JSX.Element {
   const resetBookingFormData = () => {
     setCurrentDate(null);
     setCurrentTime('');
-    setWithChildren(false);
     reset();
   };
 
@@ -53,10 +51,10 @@ function BookingForm(): JSX.Element {
     const bookingData: BookingData = {
       contactPerson: data.name,
       phone: data.tel,
-      peopleCount: +data.person,
+      peopleCount: Number(data.person),
       date: currentDate as DateSlot,
       time: currentTime,
-      withChildren: withChildren,
+      withChildren: data.children,
       placeId: currentQuestPlace.id
     };
 
@@ -108,7 +106,7 @@ function BookingForm(): JSX.Element {
               required: 'Это обязательное поле',
               pattern: {
                 value: /^(\+[7]|[8])?((\d{2,3}) ?\d|\d)(([ -]?\d)|( ?(\d{2,3}) ?)){8,12}\d$/,
-                message: 'Пожалуйста, введите корректный номер мобильного телефона  в формате +7(000)0000000'
+                message: 'Пожалуйста, введите корректный номер мобильного телефона'
               }
             })}
             type="tel"
@@ -137,11 +135,10 @@ function BookingForm(): JSX.Element {
         </div>
 
         <label className="custom-checkbox booking-form__checkbox booking-form__checkbox--children">
-          <input
+          <input {...register('children')}
             type="checkbox"
             id="children"
             name="children"
-            onChange={() => setWithChildren(!withChildren)}
           />
           <span className="custom-checkbox__icon">
             <svg width="20" height="17" aria-hidden="true">

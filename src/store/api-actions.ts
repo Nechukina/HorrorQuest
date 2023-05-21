@@ -92,8 +92,7 @@ export const fetchBookingQuestsAction = createAsyncThunk<BookingQuests, string, 
 
       return data;
     } catch (err) {
-      // eslint-disable-next-line no-debugger
-      debugger;
+
       dispatch(pushNotification({ type: 'error', message: 'Не удалось загрузить информацию о бронировании квестов' }));
       throw err;
     }

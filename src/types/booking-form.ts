@@ -4,6 +4,7 @@ export type BookingFormFields = {
   name: string;
   tel: string;
   person: string;
+  children: boolean;
 };
 
 
